@@ -44,7 +44,7 @@ body {
 header {
     position: sticky;
     top: 0;
-    z-index: 999;
+    z-index: 900;
 
     background:
         linear-gradient(
@@ -88,20 +88,7 @@ header p {
     width: 92%;
     max-width: 850px;
     margin: auto;
-}
-
-
-/* =========================================================
-   SCREENS
-========================================================= */
-
-.screen {
-    display: none;
     padding: 26px 0 40px;
-}
-
-.screen.active {
-    display: block;
 }
 
 
@@ -247,6 +234,10 @@ header p {
 .button-area {
     text-align: center;
     margin: 26px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
 }
 
 
@@ -305,8 +296,6 @@ button:hover {
 .secondary-btn {
     background: #eee5f7;
     color: #674d82;
-
-    margin-left: 8px;
 }
 
 .secondary-btn:hover {
@@ -330,27 +319,310 @@ button:hover {
 
 
 /* =========================================================
+   OVERLAY MODALS (CENTERED POPUPS)
+========================================================= */
+
+.overlay-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(51, 38, 55, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.overlay-modal.active {
+    display: flex;
+}
+
+.modal-dialog {
+    background: #fffaf2;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 750px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    animation: popup 0.25s ease;
+}
+
+@keyframes popup {
+    from {
+        transform: scale(0.92);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #eee4f2;
+}
+
+.modal-header h2 {
+    margin: 0;
+    color: #694b91;
+    font-size: 22px;
+}
+
+.close-btn {
+    background: #eee5f7;
+    color: #674d82;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    background: #7956a8;
+    color: white;
+}
+
+
+/* =========================================================
+   VISUALIZER COMPONENT STYLES
+========================================================= */
+
+:root {
+  --viz-primary: #7956a8;
+  --viz-bg: #f8fafc;
+  --viz-card: #ffffff;
+  --viz-text: #0f172a;
+  --viz-success: #16a34a;
+  --viz-error: #dc2626;
+  --viz-border: #cbd5e1;
+}
+
+.viz-mode-selector {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.viz-btn-mode {
+  flex: 1;
+  padding: 10px 8px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  border: 2px solid var(--viz-primary);
+  background: white;
+  color: var(--viz-primary);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.viz-btn-mode.active {
+  background: var(--viz-primary);
+  color: white;
+}
+
+.viz-instructions {
+  background-color: #f7f1fc;
+  border-left: 4px solid var(--viz-primary);
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  color: #403847;
+  margin-bottom: 16px;
+  line-height: 1.45;
+}
+
+.viz-instructions strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.92rem;
+}
+
+.viz-instructions ol {
+  margin-left: 18px;
+}
+
+.viz-instructions li {
+  margin-bottom: 4px;
+}
+
+.viz-inputs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.viz-btn-random {
+  background-color: #a05c78;
+  color: white;
+}
+
+.viz-btn-random:hover {
+  background-color: #884b64;
+}
+
+.viz-expression-box {
+  text-align: center;
+  padding: 14px 10px;
+  background: #f8fafc;
+  border: 2px dashed #94a3b8;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+
+.viz-main-expr {
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.viz-sub-expr {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--viz-primary);
+  margin-top: 4px;
+}
+
+.viz-steps-tracker {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.viz-step-card {
+  padding: 14px;
+  border: 2px solid var(--viz-border);
+  border-radius: 10px;
+  background-color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.viz-step-card.active {
+  border-color: var(--viz-primary);
+  background-color: #f7f1fc;
+  box-shadow: 0 3px 10px rgba(121, 86, 168, 0.08);
+}
+
+.viz-step-card.completed {
+  border-color: #10b981;
+  background-color: #f0fdf4;
+}
+
+.viz-step-title {
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #64748b;
+  margin-bottom: 8px;
+}
+
+.viz-step-card.active .viz-step-title {
+  color: var(--viz-primary);
+}
+
+.viz-step-card.completed .viz-step-title {
+  color: var(--viz-success);
+}
+
+.viz-step-question {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  line-height: 1.35;
+}
+
+.viz-step-summary {
+  font-size: 0.92rem;
+  color: #15803d;
+  line-height: 1.4;
+}
+
+.viz-step-summary-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.viz-step-summary-detail {
+  font-size: 0.85rem;
+  color: #166534;
+  margin-left: 24px;
+}
+
+.viz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.viz-btn-opt {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: 2px solid var(--viz-primary);
+  background: white;
+  color: var(--viz-primary);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.viz-btn-opt:hover, .viz-btn-opt:active {
+  background: var(--viz-primary);
+  color: white;
+}
+
+.viz-completed-card {
+  text-align: center;
+  padding: 14px;
+  background: #f0fdf4;
+  border: 2px solid var(--viz-success);
+  border-radius: 12px;
+  color: #166534;
+  font-size: 1.05rem;
+  font-weight: 700;
+  display: none;
+  margin-top: 10px;
+}
+
+
+/* =========================================================
    QUIZ HEADER
 ========================================================= */
 
 .quiz-header {
     background: white;
 
-    padding: 20px;
+    padding: 16px;
 
-    border-radius: 19px;
+    border-radius: 16px;
 
-    margin-bottom: 20px;
+    margin-bottom: 16px;
 
     border: 1px solid #eee4f2;
 
     box-shadow:
-        0 5px 16px rgba(88, 65, 91, 0.09);
-}
-
-.quiz-header h2 {
-    margin: 0 0 15px;
-    color: #694b91;
+        0 4px 12px rgba(88, 65, 91, 0.06);
 }
 
 
@@ -361,7 +633,7 @@ button:hover {
 .progress-container {
     width: 100%;
 
-    height: 13px;
+    height: 12px;
 
     background: #eee8ee;
 
@@ -394,14 +666,14 @@ button:hover {
 .question-card {
     background: white;
 
-    border-radius: 22px;
+    border-radius: 18px;
 
-    padding: 28px;
+    padding: 22px;
 
     border: 1px solid #eee4f2;
 
     box-shadow:
-        0 6px 20px rgba(88, 65, 91, 0.10);
+        0 4px 14px rgba(88, 65, 91, 0.08);
 }
 
 
@@ -414,7 +686,7 @@ button:hover {
 
     font-weight: bold;
 
-    margin-bottom: 15px;
+    margin-bottom: 12px;
 }
 
 
@@ -423,21 +695,21 @@ button:hover {
 ========================================================= */
 
 .question {
-    font-size: 32px;
+    font-size: 26px;
 
     font-weight: bold;
 
     text-align: center;
 
-    margin: 25px 0 30px;
+    margin: 18px 0 22px;
 
     color: #36303b;
 
     background: #faf5fc;
 
-    border-radius: 16px;
+    border-radius: 14px;
 
-    padding: 21px;
+    padding: 16px;
 
     border: 1px solid #eee3f2;
 }
@@ -453,7 +725,7 @@ button:hover {
     grid-template-columns:
         1fr 1fr;
 
-    gap: 14px;
+    gap: 12px;
 }
 
 .choice {
@@ -463,7 +735,7 @@ button:hover {
 
     border: 2px solid #eadfd9;
 
-    min-height: 58px;
+    min-height: 52px;
 
     transition:
         all 0.15s ease;
@@ -520,13 +792,13 @@ button:hover {
     border-left:
         6px solid #8962ae;
 
-    padding: 18px;
+    padding: 16px;
 
-    margin-top: 22px;
+    margin-top: 18px;
 
-    border-radius: 11px;
+    border-radius: 10px;
 
-    line-height: 1.75;
+    line-height: 1.65;
 
     color: #403847;
 }
@@ -542,7 +814,7 @@ button:hover {
 
 .next-area {
     text-align: right;
-    margin-top: 22px;
+    margin-top: 18px;
 }
 
 #nextButton:disabled {
@@ -561,30 +833,31 @@ button:hover {
 .result-card {
     background: white;
 
-    border-radius: 23px;
+    border-radius: 20px;
 
-    padding: 36px 25px;
+    padding: 28px 20px;
 
     text-align: center;
 
     border: 1px solid #eee4f2;
 
     box-shadow:
-        0 7px 23px rgba(88, 65, 91, 0.13);
+        0 5px 18px rgba(88, 65, 91, 0.10);
 }
 
 .result-card h2 {
     color: #694b91;
+    margin-top: 0;
 }
 
 .score-number {
-    font-size: 62px;
+    font-size: 52px;
 
     font-weight: bold;
 
     color: #8a5ba7;
 
-    margin: 15px 0;
+    margin: 10px 0;
 }
 
 .result-stats {
@@ -595,15 +868,15 @@ button:hover {
 
     gap: 12px;
 
-    margin: 25px 0;
+    margin: 20px 0;
 }
 
 .stat {
-    padding: 18px 10px;
+    padding: 14px 8px;
 
     background: #faf5fc;
 
-    border-radius: 15px;
+    border-radius: 12px;
 
     border: 1px solid #eee4f2;
 }
@@ -611,13 +884,13 @@ button:hover {
 .stat strong {
     display: block;
 
-    font-size: 28px;
+    font-size: 24px;
 
     color: #8a5ba7;
 }
 
 .stat span {
-    font-size: 14px;
+    font-size: 13px;
 }
 
 
@@ -630,7 +903,7 @@ button:hover {
 
     position: fixed;
 
-    z-index: 1000;
+    z-index: 3000;
 
     inset: 0;
 
@@ -734,13 +1007,14 @@ footer {
     }
 
     .card,
-    .question-card {
-        padding: 20px;
+    .question-card,
+    .modal-dialog {
+        padding: 16px;
     }
 
     .question {
-        font-size: 26px;
-        padding: 16px;
+        font-size: 22px;
+        padding: 12px;
     }
 
     .choices {
@@ -749,11 +1023,6 @@ footer {
 
     .result-stats {
         grid-template-columns: 1fr;
-    }
-
-    .secondary-btn {
-        margin-left: 0;
-        margin-top: 10px;
     }
 
 }
@@ -783,17 +1052,6 @@ footer {
 
 
 <div class="container">
-
-
-<!-- =========================================================
-     LESSON SCREEN
-========================================================= -->
-
-<section
-    id="homeScreen"
-    class="screen active"
->
-
 
     <!-- =====================================================
          WHAT ARE INTEGERS
@@ -1072,28 +1330,6 @@ footer {
 
         </div>
 
-
-        <div class="button-area">
-
-            <button
-                class="primary-btn"
-                onclick="startQuiz('addition')"
-            >
-
-                📝 Take 25-Item Addition Quiz
-
-            </button>
-
-        </div>
-
-
-        <div class="bank-info">
-
-            🎲 100-question bank →
-            25 random questions per quiz
-
-        </div>
-
     </div>
 
 
@@ -1308,207 +1544,193 @@ footer {
 
         </div>
 
-
-        <div class="button-area">
-
-            <button
-                class="primary-btn"
-                onclick="startQuiz('subtraction')"
-            >
-
-                📝 Take 25-Item Subtraction Quiz
-
-            </button>
-
-        </div>
-
-
-        <div class="bank-info">
-
-            🎲 100-question bank →
-            25 random questions per quiz
-
-        </div>
-
     </div>
 
-</section>
 
+    <!-- =====================================================
+         INTERACTIVE TOOLS CARD (LAUNCH BUTTONS)
+    ====================================================== -->
 
-<!-- =========================================================
-     QUIZ SCREEN
-========================================================= -->
+    <div class="card">
 
-<section
-    id="quizScreen"
-    class="screen"
->
-
-    <div class="quiz-header">
-
-        <h2 id="quizTitle">
-            Integer Quiz
+        <h2>
+            🚀 Interactive Practice & Quizzes
         </h2>
 
-        <div class="progress-container">
-
-            <div id="progressBar"></div>
-
-        </div>
-
-    </div>
-
-
-    <div class="question-card">
-
-        <div
-            id="questionNumber"
-            class="question-number">
-        </div>
-
-
-        <div
-            id="questionText"
-            class="question">
-        </div>
-
-
-        <div
-            id="choices"
-            class="choices">
-        </div>
-
-
-        <div
-            id="explanation"
-            class="explanation">
-        </div>
-
-
-        <div class="next-area">
-
-            <button
-                id="nextButton"
-                class="primary-btn"
-                onclick="nextQuestion()"
-                disabled
-            >
-
-                Next Question →
-
-            </button>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     RESULTS
-========================================================= -->
-
-<section
-    id="resultScreen"
-    class="screen"
->
-
-    <div class="result-card">
-
-        <h2 id="resultTitle">
-            Quiz Complete!
-        </h2>
-
-
-        <div
-            id="scoreNumber"
-            class="score-number"
-        >
-            0/25
-        </div>
-
-
-        <p>
-            Your Score
+        <p class="intro">
+            Click a button below to launch the interactive step-by-step visualizer or take a quiz!
         </p>
 
-
-        <div class="result-stats">
-
-            <div class="stat">
-
-                <strong id="correctCount">
-                    0
-                </strong>
-
-                <span>
-                    Correct
-                </span>
-
-            </div>
-
-
-            <div class="stat">
-
-                <strong id="wrongCount">
-                    0
-                </strong>
-
-                <span>
-                    Wrong
-                </span>
-
-            </div>
-
-
-            <div class="stat">
-
-                <strong id="percentage">
-                    0%
-                </strong>
-
-                <span>
-                    Percentage
-                </span>
-
-            </div>
-
-        </div>
-
-
-        <h3 id="scoreMessage">
-        </h3>
-
-
         <div class="button-area">
 
             <button
                 class="primary-btn"
-                onclick="restartQuiz()"
+                onclick="openVisualizer()"
             >
-
-                🔄 Try Again
-
+                🎯 Open Interactive Visualizer
             </button>
 
+            <button
+                class="primary-btn secondary-btn"
+                onclick="startQuiz('addition')"
+            >
+                📝 Take 25-Item Addition Quiz
+            </button>
 
             <button
-                class="secondary-btn"
-                onclick="backToLessons()"
+                class="primary-btn secondary-btn"
+                onclick="startQuiz('subtraction')"
             >
-
-                📘 Back to Lesson
-
+                📝 Take 25-Item Subtraction Quiz
             </button>
 
         </div>
 
+        <div class="bank-info">
+            🎲 100-question bank → 25 random questions per quiz session
+        </div>
+
     </div>
 
-</section>
+</div>
 
 
+<!-- =========================================================
+     OVERLAY VISUALIZER MODAL (CENTERED POPUP)
+========================================================= -->
+
+<div id="visualizerModal" class="overlay-modal">
+    <div class="modal-dialog">
+        <div class="modal-header">
+            <h2>🎯 Interactive Visualizer</h2>
+            <button class="close-btn" onclick="closeVisualizer()">✕ Close</button>
+        </div>
+
+        <div>
+            <!-- Mode Selector -->
+            <div class="viz-mode-selector">
+              <button class="viz-btn-mode active" id="modeAdd" onclick="switchMode('addition')">Addition (+)</button>
+              <button class="viz-btn-mode" id="modeSub" onclick="switchMode('subtraction')">Subtraction (-)</button>
+            </div>
+
+            <!-- Instructions Section -->
+            <div class="viz-instructions" id="instructionsText"></div>
+
+            <div class="viz-inputs">
+              <button class="btn viz-btn-random" onclick="generateRandomProblem()">🎲 New Problem (Random)</button>
+            </div>
+
+            <div class="viz-expression-box">
+              <div class="viz-main-expr" id="mainExprBox">?</div>
+              <div class="viz-sub-expr" id="subExprBox"></div>
+            </div>
+
+            <div class="viz-steps-tracker">
+              <!-- REWRITE STEP CARD (Subtraction Only) -->
+              <div class="viz-step-card" id="stepRewriteCard" style="display: none;">
+                <div class="viz-step-title">Step 1: Rewrite Subtraction</div>
+                <div id="stepRewriteContent"></div>
+              </div>
+
+              <!-- STEP 1: IDENTIFY SIGNS -->
+              <div class="viz-step-card" id="step1Card" style="display: none;">
+                <div class="viz-step-title" id="step1Title">Step 1: Identify Signs</div>
+                <div id="step1Content"></div>
+              </div>
+
+              <!-- STEP 2: CALCULATE ABSOLUTE VALUE -->
+              <div class="viz-step-card" id="step2Card" style="display: none;">
+                <div class="viz-step-title" id="step2Title">Step 2: Calculate Value</div>
+                <div id="step2Content"></div>
+              </div>
+
+              <!-- STEP 3: DETERMINE FINAL SIGN -->
+              <div class="viz-step-card" id="step3Card" style="display: none;">
+                <div class="viz-step-title" id="step3Title">Step 3: Determine Final Sign</div>
+                <div id="step3Content"></div>
+              </div>
+            </div>
+
+            <!-- Completion Card -->
+            <div class="viz-completed-card" id="completedCard">
+              🎉 Correct! You completed all steps.
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- =========================================================
+     OVERLAY QUIZ MODAL (CENTERED POPUP)
+========================================================= -->
+
+<div id="quizModal" class="overlay-modal">
+    <div class="modal-dialog">
+        <div class="modal-header">
+            <h2 id="quizTitle">Integer Quiz</h2>
+            <button class="close-btn" onclick="closeQuiz()">✕ Close</button>
+        </div>
+
+        <!-- QUIZ ACTIVE VIEW -->
+        <div id="quizActiveContainer">
+            <div class="quiz-header">
+                <div class="progress-container">
+                    <div id="progressBar"></div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div id="questionNumber" class="question-number"></div>
+                <div id="questionText" class="question"></div>
+                <div id="choices" class="choices"></div>
+                <div id="explanation" class="explanation"></div>
+
+                <div class="next-area">
+                    <button id="nextButton" class="primary-btn" onclick="nextQuestion()" disabled>
+                        Next Question →
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- RESULT VIEW -->
+        <div id="quizResultContainer" style="display: none;">
+            <div class="result-card">
+                <h2 id="resultTitle">Quiz Complete!</h2>
+                <div id="scoreNumber" class="score-number">0/25</div>
+                <p>Your Score</p>
+
+                <div class="result-stats">
+                    <div class="stat">
+                        <strong id="correctCount">0</strong>
+                        <span>Correct</span>
+                    </div>
+
+                    <div class="stat">
+                        <strong id="wrongCount">0</strong>
+                        <span>Wrong</span>
+                    </div>
+
+                    <div class="stat">
+                        <strong id="percentage">0%</strong>
+                        <span>Percentage</span>
+                    </div>
+                </div>
+
+                <h3 id="scoreMessage"></h3>
+
+                <div class="button-area">
+                    <button class="primary-btn" onclick="restartQuiz()">
+                        🔄 Try Again
+                    </button>
+                    <button class="secondary-btn" onclick="closeQuiz()">
+                        ✖ Close Quiz
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>
 
 
@@ -1571,10 +1793,28 @@ footer {
 <script>
 
 /* =========================================================
-   SETTINGS
+   SETTINGS & GLOBAL SETUP
 ========================================================= */
 
 const QUESTIONS_PER_QUIZ = 25;
+
+
+/* =========================================================
+   MODAL CONTROLS
+========================================================= */
+
+function openVisualizer() {
+    document.getElementById('visualizerModal').classList.add('active');
+    generateRandomProblem();
+}
+
+function closeVisualizer() {
+    document.getElementById('visualizerModal').classList.remove('active');
+}
+
+function closeQuiz() {
+    document.getElementById('quizModal').classList.remove('active');
+}
 
 
 /* =========================================================
@@ -2171,11 +2411,10 @@ function startQuiz(type) {
 
     answered = false;
 
+    document.getElementById("quizActiveContainer").style.display = "block";
+    document.getElementById("quizResultContainer").style.display = "none";
 
-    showScreen(
-        "quizScreen"
-    );
-
+    document.getElementById("quizModal").classList.add("active");
 
     loadQuestion();
 }
@@ -2437,7 +2676,10 @@ function selectAnswer(
 ========================================================= */
 
 function showFeedback(
-    isCorrect
+    isCorrect,
+    customTitle,
+    customMsg,
+    onContinueCb
 ) {
 
     const modal =
@@ -2464,28 +2706,36 @@ function showFeedback(
         );
 
 
-    if (isCorrect) {
+    if (customTitle && customMsg) {
+        icon.textContent = isCorrect ? "🎉" : "💪";
+        title.textContent = customTitle;
+        message.innerText = customMsg;
+        window.vizPendingCallback = isCorrect ? onContinueCb : null;
+    } else {
+        window.vizPendingCallback = null;
+        if (isCorrect) {
 
-        icon.textContent = "🎉";
+            icon.textContent = "🎉";
 
-        title.textContent =
-            "Correct!";
+            title.textContent =
+                "Correct!";
 
-        message.textContent =
-            "Excellent! You got it right. Keep going!";
+            message.textContent =
+                "Excellent! You got it right. Keep going!";
 
-    }
+        }
 
-    else {
+        else {
 
-        icon.textContent = "💪";
+            icon.textContent = "💪";
 
-        title.textContent =
-            "Keep Practicing!";
+            title.textContent =
+                "Keep Practicing!";
 
-        message.textContent =
-            "That's okay! Check the explanation and use it to learn from the mistake.";
+            message.textContent =
+                "That's okay! Check the explanation and use it to learn from the mistake.";
 
+        }
     }
 
 
@@ -2508,6 +2758,12 @@ function closeFeedback() {
         "show"
     );
 
+    if (window.vizPendingCallback !== undefined && window.vizPendingCallback !== null) {
+        const cb = window.vizPendingCallback;
+        window.vizPendingCallback = null;
+        cb();
+        return;
+    }
 
     const question =
         currentQuiz[
@@ -2672,9 +2928,8 @@ function showResults() {
     }
 
 
-    showScreen(
-        "resultScreen"
-    );
+    document.getElementById("quizActiveContainer").style.display = "none";
+    document.getElementById("quizResultContainer").style.display = "block";
 
 }
 
@@ -2685,11 +2940,6 @@ function showResults() {
 
 function restartQuiz() {
 
-    /*
-       Selecting the same quiz again creates
-       a new random set of 25 questions.
-    */
-
     startQuiz(
         quizType
     );
@@ -2698,72 +2948,362 @@ function restartQuiz() {
 
 
 /* =========================================================
-   BACK TO LESSON
+   VISUALIZER LOGIC
 ========================================================= */
 
-function backToLessons() {
+let mode = 'addition';
+let origN1 = 0;
+let origN2 = 0;
 
-    document.getElementById(
-        "feedbackModal"
-    ).classList.remove(
-        "show"
-    );
+let addN1 = 0;
+let addN2 = 0;
+let isSameSign = false;
+let step2Val = 0;
 
-
-    showScreen(
-        "homeScreen"
-    );
-
-
-    window.scrollTo({
-
-        top: 0,
-
-        behavior: "smooth"
-
-    });
-
+function switchMode(newMode) {
+  mode = newMode;
+  document.getElementById('modeAdd').className = `viz-btn-mode ${mode === 'addition' ? 'active' : ''}`;
+  document.getElementById('modeSub').className = `viz-btn-mode ${mode === 'subtraction' ? 'active' : ''}`;
+  generateRandomProblem();
 }
 
+function getRandomSignedInt() {
+  let num = 0;
+  while (num === 0) {
+    num = Math.floor(Math.random() * 41) - 20;
+  }
+  return num;
+}
 
-/* =========================================================
-   SCREEN CONTROL
-========================================================= */
+function updateInstructions() {
+  const inst = document.getElementById('instructionsText');
+  if (mode === 'addition') {
+    inst.innerHTML = `
+      <strong>📌 Addition Instructions:</strong>
+      <ol>
+        <li>Check if numbers have <strong>Same Sign</strong> or <strong>Opposite Signs</strong>.</li>
+        <li>If <em>Same</em>: ADD and keep shared sign.</li>
+        <li>If <em>Opposite</em>: SUBTRACT (Big - Small) and keep sign of bigger absolute value.</li>
+      </ol>
+    `;
+  } else {
+    inst.innerHTML = `
+      <strong>📌 Subtraction Instructions:</strong>
+      <ol>
+        <li><strong>Rewrite:</strong> Apply <em>Keep-Change-Change (KCC)</em> (Keep 1st number, Change <code>-</code> to <code>+</code>, Change 2nd number's sign).</li>
+        <li><strong>Add:</strong> Follow standard addition rules for signed numbers.</li>
+      </ol>
+    `;
+  }
+}
 
-function showScreen(
-    screenId
-) {
+function generateRandomProblem() {
+  origN1 = getRandomSignedInt();
+  origN2 = getRandomSignedInt();
+  
+  updateInstructions();
+  document.getElementById('completedCard').style.display = 'none';
 
-    document
-        .querySelectorAll(
-            ".screen"
-        )
-        .forEach(
-            screen => {
+  const fmt2 = origN2 < 0 ? `(${origN2})` : origN2;
+  const opSymbol = mode === 'addition' ? '+' : '-';
+  
+  document.getElementById('mainExprBox').innerText = `${origN1} ${opSymbol} ${fmt2} = ?`;
+  document.getElementById('subExprBox').innerText = '';
 
-                screen.classList.remove(
-                    "active"
-                );
+  resetCard('stepRewriteCard');
+  resetCard('step1Card');
+  resetCard('step2Card');
+  resetCard('step3Card');
 
-            }
-        );
+  if (mode === 'subtraction') {
+    setupStepRewrite();
+  } else {
+    addN1 = origN1;
+    addN2 = origN2;
+    isSameSign = (addN1 >= 0 && addN2 >= 0) || (addN1 < 0 && addN2 < 0);
+    setupStep1();
+  }
+}
 
+function resetCard(cardId) {
+  const card = document.getElementById(cardId);
+  card.style.display = 'none';
+  card.className = 'viz-step-card';
+}
 
-    document.getElementById(
-        screenId
-    ).classList.add(
-        "active"
+/* SUBTRACTION REWRITE STEP */
+function setupStepRewrite() {
+  const card = document.getElementById('stepRewriteCard');
+  card.style.display = 'block';
+  card.className = 'viz-step-card active';
+
+  const correctN2 = -origN2;
+  const fmtCorrectN2 = correctN2 < 0 ? `(${correctN2})` : correctN2;
+  const correctStr = `${origN1} + ${fmtCorrectN2}`;
+
+  const wrongN2 = origN2;
+  const fmtWrongN2 = wrongN2 < 0 ? `(${wrongN2})` : wrongN2;
+  const wrongStr = `${origN1} + ${fmtWrongN2}`;
+
+  const questionHTML = `
+    <div class="viz-step-question">Apply Keep-Change-Change (KCC): What is the correct rewritten addition expression?</div>
+    <div class="viz-options">
+      ${Math.random() > 0.5 ? 
+        `<button class="viz-btn-opt" onclick="checkStepRewrite(true, '${correctStr}')">${correctStr}</button>
+         <button class="viz-btn-opt" onclick="checkStepRewrite(false, '${wrongStr}')">${wrongStr}</button>` : 
+        `<button class="viz-btn-opt" onclick="checkStepRewrite(false, '${wrongStr}')">${wrongStr}</button>
+         <button class="viz-btn-opt" onclick="checkStepRewrite(true, '${correctStr}')">${correctStr}</button>`
+      }
+    </div>
+  `;
+
+  document.getElementById('stepRewriteContent').innerHTML = questionHTML;
+}
+
+function checkStepRewrite(isCorrect, rewrittenStr) {
+  if (isCorrect) {
+    addN1 = origN1;
+    addN2 = -origN2;
+    isSameSign = (addN1 >= 0 && addN2 >= 0) || (addN1 < 0 && addN2 < 0);
+
+    const nextAction = () => {
+      const card = document.getElementById('stepRewriteCard');
+      card.className = 'viz-step-card completed';
+      
+      document.getElementById('stepRewriteContent').innerHTML = `
+        <div class="viz-step-summary">
+          <div class="viz-step-summary-header">
+            <span>✓</span>
+            <span>Rewritten: <strong>${rewrittenStr}</strong></span>
+          </div>
+          <div class="viz-step-summary-detail">(Keep 1st, Change to +, Change sign of 2nd)</div>
+        </div>
+      `;
+
+      document.getElementById('subExprBox').innerText = `Rewritten: ${rewrittenStr} = ?`;
+      setupStep1();
+    };
+
+    showFeedback(
+      true, 
+      "🌟 Great Job!", 
+      `You correctly applied Keep-Change-Change!\n\n• Kept: ${origN1}\n• Changed minus to plus (+)\n• Changed second sign to ${addN2 < 0 ? `(${addN2})` : addN2}`,
+      nextAction
     );
+  } else {
+    showFeedback(
+      false, 
+      "❌ Incorrect Choice", 
+      "Remember Keep-Change-Change (KCC):\n\n1. KEEP the first number as is.\n2. CHANGE subtraction (-) to addition (+).\n3. CHANGE the sign of the second number."
+    );
+  }
+}
 
+/* STEP 1: IDENTIFY SIGNS */
+function setupStep1() {
+  const card = document.getElementById('step1Card');
+  card.style.display = 'block';
+  card.className = 'viz-step-card active';
 
-    window.scrollTo({
+  document.getElementById('step1Title').innerText = mode === 'subtraction' ? 'Step 2: Identify Signs' : 'Step 1: Identify Signs';
+  
+  document.getElementById('step1Content').innerHTML = `
+    <div class="viz-step-question">Do ${addN1} and ${addN2} have the SAME sign or OPPOSITE signs?</div>
+    <div class="viz-options">
+      <button class="viz-btn-opt" onclick="checkStep1(true)">Same Sign</button>
+      <button class="viz-btn-opt" onclick="checkStep1(false)">Opposite Signs</button>
+    </div>
+  `;
+}
 
-        top: 0,
+function checkStep1(userSelectedSame) {
+  if (userSelectedSame === isSameSign) {
+    const signText = isSameSign ? 'SAME SIGN' : 'OPPOSITE SIGNS';
+    
+    const nextAction = () => {
+      const card = document.getElementById('step1Card');
+      card.className = 'viz-step-card completed';
+      
+      document.getElementById('step1Content').innerHTML = `
+        <div class="viz-step-summary">
+          <div class="viz-step-summary-header">
+            <span>✓</span>
+            <span>Identified: <strong>${signText}</strong> (${addN1} and ${addN2})</span>
+          </div>
+        </div>
+      `;
 
-        behavior: "smooth"
+      setupStep2();
+    };
 
-    });
+    const explanation = isSameSign 
+      ? `Correct! Both ${addN1} and ${addN2} have the same sign.` 
+      : `Correct! One number is positive and the other is negative, so they have opposite signs.`;
 
+    showFeedback(true, "👍 Excellent!", explanation, nextAction);
+
+  } else {
+    if (isSameSign) {
+      showFeedback(false, "❌ Incorrect Choice", `Both numbers have the same sign (${addN1} and ${addN2} are both ${addN1 > 0 ? 'positive' : 'negative'}).`);
+    } else {
+      showFeedback(false, "❌ Incorrect Choice", `One number is positive and the other is negative, so they have OPPOSITE signs.`);
+    }
+  }
+}
+
+/* STEP 2: CALCULATE VALUE */
+function setupStep2() {
+  const card = document.getElementById('step2Card');
+  card.style.display = 'block';
+  card.className = 'viz-step-card active';
+
+  document.getElementById('step2Title').innerText = mode === 'subtraction' ? 'Step 3: Calculate Value' : 'Step 2: Calculate Value';
+
+  const abs1 = Math.abs(addN1);
+  const abs2 = Math.abs(addN2);
+
+  let contentHTML = '';
+
+  if (isSameSign) {
+    const sum = abs1 + abs2;
+    const diff = Math.abs(abs1 - abs2);
+    contentHTML = `
+      <div class="viz-step-question">Since signs are the same, what operation should you perform on absolute values (${abs1} and ${abs2})?</div>
+      <div class="viz-options">
+        <button class="viz-btn-opt" onclick="checkStep2(true, ${sum})">ADD: ${abs1} + ${abs2} = ${sum}</button>
+        <button class="viz-btn-opt" onclick="checkStep2(false, ${diff})">SUBTRACT: ${abs1} - ${abs2} = ${diff}</button>
+      </div>
+    `;
+  } else {
+    const big = Math.max(abs1, abs2);
+    const small = Math.min(abs1, abs2);
+    const diff = big - small;
+    const sum = abs1 + abs2;
+    contentHTML = `
+      <div class="viz-step-question">Since signs are opposite, what operation should you perform?</div>
+      <div class="viz-options">
+        <button class="viz-btn-opt" onclick="checkStep2(true, ${diff})">SUBTRACT (Big - Small): ${big} - ${small} = ${diff}</button>
+        <button class="viz-btn-opt" onclick="checkStep2(false, ${sum})">ADD: ${abs1} + ${abs2} = ${sum}</button>
+      </div>
+    `;
+  }
+
+  document.getElementById('step2Content').innerHTML = contentHTML;
+}
+
+function checkStep2(isCorrectOption, calculatedVal) {
+  if (isCorrectOption) {
+    step2Val = calculatedVal;
+    const opText = isSameSign ? 'ADD' : 'SUBTRACT (Big - Small)';
+
+    const nextAction = () => {
+      const card = document.getElementById('step2Card');
+      card.className = 'viz-step-card completed';
+      
+      document.getElementById('step2Content').innerHTML = `
+        <div class="viz-step-summary">
+          <div class="viz-step-summary-header">
+            <span>✓</span>
+            <span>Calculated Value: <strong>${calculatedVal}</strong></span>
+          </div>
+          <div class="viz-step-summary-detail">Operation: ${opText}</div>
+        </div>
+      `;
+
+      setupStep3();
+    };
+
+    const explanation = isSameSign 
+      ? `Awesome! When signs are the SAME, you ADD the absolute values (${Math.abs(addN1)} + ${Math.abs(addN2)} = ${calculatedVal}).` 
+      : `Awesome! When signs are OPPOSITE, you SUBTRACT the absolute values (${Math.max(Math.abs(addN1), Math.abs(addN2))} - ${Math.min(Math.abs(addN1), Math.abs(addN2))} = ${calculatedVal}).`;
+
+    showFeedback(true, "🎯 Perfect!", explanation, nextAction);
+
+  } else {
+    if (isSameSign) {
+      showFeedback(false, "❌ Incorrect Choice", "When signs are the SAME, you must ADD the absolute values together.");
+    } else {
+      showFeedback(false, "❌ Incorrect Choice", "When signs are OPPOSITE, you must SUBTRACT the smaller absolute value from the bigger absolute value.");
+    }
+  }
+}
+
+/* STEP 3: DETERMINE FINAL SIGN */
+function setupStep3() {
+  const card = document.getElementById('step3Card');
+  card.style.display = 'block';
+  card.className = 'viz-step-card active';
+
+  document.getElementById('step3Title').innerText = mode === 'subtraction' ? 'Step 4: Determine Final Sign' : 'Step 3: Determine Final Sign';
+
+  const posChoice = Math.abs(step2Val);
+  const negChoice = -Math.abs(step2Val);
+
+  document.getElementById('step3Content').innerHTML = `
+    <div class="viz-step-question">What sign should the value (${step2Val}) take for the final answer?</div>
+    <div class="viz-options">
+      <button class="viz-btn-opt" onclick="checkStep3(${posChoice})">+${posChoice}</button>
+      <button class="viz-btn-opt" onclick="checkStep3(${negChoice})">${negChoice}</button>
+    </div>
+  `;
+}
+
+function checkStep3(userAnswer) {
+  const actualResult = addN1 + addN2;
+
+  if (userAnswer === actualResult) {
+    const nextAction = () => {
+      const card = document.getElementById('step3Card');
+      card.className = 'viz-step-card completed';
+      
+      document.getElementById('step3Content').innerHTML = `
+        <div class="viz-step-summary">
+          <div class="viz-step-summary-header">
+            <span>✓</span>
+            <span>Selected Final Answer: <strong>${actualResult}</strong></span>
+          </div>
+        </div>
+      `;
+
+      const fmt2 = origN2 < 0 ? `(${origN2})` : origN2;
+      const opSymbol = mode === 'addition' ? '+' : '-';
+      document.getElementById('mainExprBox').innerText = `${origN1} ${opSymbol} ${fmt2} = ${actualResult}`;
+
+      if (mode === 'subtraction') {
+        const fmtAdd2 = addN2 < 0 ? `(${addN2})` : addN2;
+        document.getElementById('subExprBox').innerText = `Rewritten: ${addN1} + ${fmtAdd2} = ${actualResult}`;
+      }
+
+      document.getElementById('completedCard').style.display = 'block';
+    };
+
+    let explanation = "";
+    if (isSameSign) {
+      const signText = addN1 >= 0 ? "positive (+)" : "negative (-)";
+      explanation = `Great job! Both numbers were ${signText}, so the final answer keeps the ${signText} sign (${actualResult}).`;
+    } else {
+      const abs1 = Math.abs(addN1);
+      const abs2 = Math.abs(addN2);
+      const biggerNum = abs1 > abs2 ? addN1 : addN2;
+      const signText = biggerNum >= 0 ? "positive (+)" : "negative (-)";
+      explanation = `Great job! The number with the larger absolute value is ${biggerNum} (${signText}), so the final answer takes the ${signText} sign (${actualResult}).`;
+    }
+
+    showFeedback(true, "🎉 Problem Solved!", explanation, nextAction);
+
+  } else {
+    if (isSameSign) {
+      const signText = addN1 >= 0 ? "positive (+)" : "negative (-)";
+      showFeedback(false, "❌ Incorrect Choice", `Both numbers in addition were ${signText}, so you must keep the ${signText} sign.`);
+    } else {
+      const abs1 = Math.abs(addN1);
+      const abs2 = Math.abs(addN2);
+      const biggerNum = abs1 > abs2 ? addN1 : addN2;
+      const signText = biggerNum >= 0 ? "positive (+)" : "negative (-)";
+      
+      showFeedback(false, "❌ Incorrect Choice", `The number with the larger absolute value is ${biggerNum} (${signText}), so the final result must take the ${signText} sign.`);
+    }
+  }
 }
 
 </script>
