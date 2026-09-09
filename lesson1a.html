@@ -1,18 +1,16 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Adding and Subtracting Integers</title>
+<title>Adding & Subtracting Integers</title>
 
 <style>
 
-/* =====================================================
-   GENERAL
-===================================================== */
+/* =========================================================
+   BASE
+========================================================= */
 
 * {
     box-sizing: border-box;
@@ -23,138 +21,107 @@ html {
 }
 
 body {
-
     margin: 0;
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 
     background:
         linear-gradient(
             135deg,
-            #f7f9ff 0%,
-            #eef7ff 50%,
-            #f8f4ff 100%
+            #fffaf2 0%,
+            #fdf7ff 50%,
+            #fff8f3 100%
         );
 
-    color: #26324a;
-
+    color: #34313b;
     line-height: 1.6;
 }
 
 
-/* =====================================================
+/* =========================================================
    STICKY HEADER
-===================================================== */
+========================================================= */
 
 header {
-
     position: sticky;
-
     top: 0;
-
     z-index: 999;
 
     background:
         linear-gradient(
             135deg,
-            #5b4bc4,
-            #3f82d7
+            #7656a8,
+            #9a6bb8
         );
 
     color: white;
 
-    padding: 18px 20px;
+    padding: 17px 20px;
 
     text-align: center;
 
-    border-radius:
-        0 0 18px 18px;
+    border-radius: 0 0 20px 20px;
 
     box-shadow:
-        0 4px 14px
-        rgba(35,55,120,0.25);
+        0 5px 18px rgba(78, 52, 93, 0.20);
 
-    transition:
-        all 0.25s ease;
+    transition: all 0.25s ease;
 }
 
 header h1 {
-
-    margin:
-        0 0 5px;
-
+    margin: 0 0 4px;
     font-size: 27px;
-
-    letter-spacing:
-        0.3px;
+    letter-spacing: 0.2px;
 }
 
 header p {
-
     margin: 0;
-
     font-size: 15px;
-
-    opacity: 0.95;
+    opacity: 0.96;
 }
 
 
-/* =====================================================
-   CONTAINER
-===================================================== */
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
 
 .container {
-
     width: 92%;
-
     max-width: 850px;
-
     margin: auto;
 }
 
 
-/* =====================================================
-   SCREEN
-===================================================== */
+/* =========================================================
+   SCREENS
+========================================================= */
 
 .screen {
-
     display: none;
-
-    padding:
-        25px 0 40px;
+    padding: 26px 0 40px;
 }
 
 .screen.active {
-
     display: block;
 }
 
 
-/* =====================================================
+/* =========================================================
    CARDS
-===================================================== */
+========================================================= */
 
 .card {
+    background: rgba(255,255,255,0.96);
 
-    background:
-        rgba(255,255,255,0.97);
+    border-radius: 20px;
 
-    border-radius: 18px;
-
-    padding: 25px;
+    padding: 26px;
 
     margin-bottom: 22px;
 
-    border:
-        1px solid #e3e9f5;
+    border: 1px solid #eee4f2;
 
     box-shadow:
-        0 4px 16px
-        rgba(55,75,120,0.09);
+        0 5px 18px rgba(88, 65, 91, 0.08);
 
     transition:
         transform 0.2s ease,
@@ -162,83 +129,66 @@ header p {
 }
 
 .card:hover {
-
-    transform:
-        translateY(-2px);
+    transform: translateY(-2px);
 
     box-shadow:
-        0 7px 20px
-        rgba(55,75,120,0.13);
+        0 8px 22px rgba(88, 65, 91, 0.12);
 }
 
 .card h2 {
-
-    color:
-        #5142b8;
-
     margin-top: 0;
+    color: #694b91;
 }
 
 .card h3 {
-
-    color:
-        #3274b9;
+    color: #a45b68;
 }
 
 
-/* =====================================================
-   INTRO
-===================================================== */
+/* =========================================================
+   INTRO TEXT
+========================================================= */
 
 .intro {
-
     font-size: 17px;
-
-    line-height: 1.7;
+    line-height: 1.75;
 }
 
 
-/* =====================================================
+/* =========================================================
    RULE BOX
-===================================================== */
+========================================================= */
 
 .rule {
+    background: #f8f1ff;
 
-    background:
-        #f0f5ff;
-
-    border-left:
-        6px solid #5578d4;
+    border-left: 6px solid #8962ae;
 
     padding: 18px;
 
-    border-radius: 10px;
+    border-radius: 12px;
 
     margin: 18px 0;
 
-    line-height: 1.7;
+    line-height: 1.75;
 
     box-shadow:
-        0 2px 7px
-        rgba(60,90,150,0.06);
+        0 2px 8px rgba(95, 65, 115, 0.06);
 }
 
 
-/* =====================================================
+/* =========================================================
    EXAMPLES
-===================================================== */
+========================================================= */
 
 .example {
+    background: #fffaf5;
 
-    background:
-        #fbfcff;
+    border: 1px solid #f0e1d6;
 
-    border:
-        1px solid #dfe7f5;
+    border-radius: 13px;
 
-    border-radius: 12px;
-
-    padding: 16px;
+    padding: 17px;
 
     margin: 14px 0;
 
@@ -246,85 +196,70 @@ header p {
 }
 
 
-/* =====================================================
-   MATH
-===================================================== */
+/* =========================================================
+   MATH BOX
+========================================================= */
 
 .math {
-
     font-size: 22px;
 
     font-weight: bold;
 
-    color:
-        #4936a3;
+    color: #694b91;
 
-    background:
-        #f4f1ff;
+    background: #f5effa;
 
-    padding:
-        8px 12px;
+    padding: 8px 13px;
 
-    border-radius: 8px;
+    border-radius: 9px;
 
-    display:
-        inline-block;
+    display: inline-block;
 
-    margin:
-        5px 0;
+    margin: 5px 0;
 }
 
 
-/* =====================================================
+/* =========================================================
    TIP
-===================================================== */
+========================================================= */
 
 .tip {
+    background: #fff7dc;
 
-    background:
-        #fff9e6;
+    border-left: 6px solid #e4b64c;
 
-    border-left:
-        6px solid #e7b52f;
-
-    padding: 15px;
-
-    border-radius: 10px;
-
-    margin-top: 15px;
-
-    line-height: 1.6;
-
-    color:
-        #514522;
-}
-
-
-/* =====================================================
-   BUTTON AREA
-===================================================== */
-
-.button-area {
-
-    text-align: center;
-
-    margin:
-        25px 0;
-}
-
-
-/* =====================================================
-   BUTTONS
-===================================================== */
-
-button {
-
-    border: none;
+    padding: 16px;
 
     border-radius: 11px;
 
-    padding:
-        13px 22px;
+    margin-top: 16px;
+
+    line-height: 1.65;
+
+    color: #514829;
+}
+
+
+/* =========================================================
+   BUTTON AREA
+========================================================= */
+
+.button-area {
+    text-align: center;
+    margin: 26px 0;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+button {
+    border: none;
+
+    border-radius: 12px;
+
+    padding: 13px 22px;
 
     font-size: 16px;
 
@@ -334,128 +269,108 @@ button {
 
     transition:
         transform 0.15s ease,
-        box-shadow 0.15s ease;
+        box-shadow 0.15s ease,
+        background 0.15s ease;
 }
 
 button:hover {
-
-    transform:
-        translateY(-2px);
+    transform: translateY(-2px);
 }
 
-.primary-btn {
 
+/* Main button */
+
+.primary-btn {
     background:
         linear-gradient(
             135deg,
-            #5b4bc4,
-            #397ed4
+            #7956a8,
+            #a05c78
         );
 
     color: white;
 
     box-shadow:
-        0 4px 10px
-        rgba(63,82,170,0.25);
+        0 5px 12px rgba(107, 70, 115, 0.22);
 }
 
 .primary-btn:hover {
-
     box-shadow:
-        0 7px 16px
-        rgba(63,82,170,0.32);
+        0 8px 17px rgba(107, 70, 115, 0.30);
 }
+
+
+/* Secondary button */
 
 .secondary-btn {
+    background: #eee5f7;
+    color: #674d82;
 
-    background:
-        #e9edff;
+    margin-left: 8px;
+}
 
-    color:
-        #4d4aa0;
-
-    margin-left:
-        8px;
+.secondary-btn:hover {
+    background: #e5d8f1;
 }
 
 
-/* =====================================================
-   QUESTION BANK INFO
-===================================================== */
+/* =========================================================
+   BANK INFORMATION
+========================================================= */
 
 .bank-info {
-
     text-align: center;
 
     font-size: 14px;
 
-    color:
-        #6e6780;
+    color: #766d78;
 
-    margin-top:
-        15px;
+    margin-top: 15px;
 }
 
 
-/* =====================================================
+/* =========================================================
    QUIZ HEADER
-===================================================== */
+========================================================= */
 
 .quiz-header {
+    background: white;
 
-    background:
-        white;
+    padding: 20px;
 
-    padding:
-        20px;
+    border-radius: 19px;
 
-    border-radius:
-        18px;
+    margin-bottom: 20px;
 
-    margin-bottom:
-        20px;
-
-    border:
-        1px solid #e1e7f3;
+    border: 1px solid #eee4f2;
 
     box-shadow:
-        0 4px 14px
-        rgba(50,70,110,0.10);
+        0 5px 16px rgba(88, 65, 91, 0.09);
 }
 
 .quiz-header h2 {
-
-    margin:
-        0 0 15px;
-
-    color:
-        #5142b8;
+    margin: 0 0 15px;
+    color: #694b91;
 }
 
 
-/* =====================================================
+/* =========================================================
    PROGRESS BAR
-===================================================== */
+========================================================= */
 
 .progress-container {
-
     width: 100%;
 
-    height:
-        12px;
+    height: 13px;
 
-    background:
-        #e4e8f2;
+    background: #eee8ee;
 
-    border-radius:
-        20px;
+    border-radius: 20px;
 
-    overflow:
-        hidden;
+    overflow: hidden;
 }
 
 #progressBar {
-
     height: 100%;
 
     width: 0%;
@@ -463,8 +378,8 @@ button:hover {
     background:
         linear-gradient(
             90deg,
-            #5b4bc4,
-            #397ed4
+            #8b61ad,
+            #d07878
         );
 
     transition:
@@ -472,377 +387,282 @@ button:hover {
 }
 
 
-/* =====================================================
+/* =========================================================
    QUESTION CARD
-===================================================== */
+========================================================= */
 
 .question-card {
+    background: white;
 
-    background:
-        white;
+    border-radius: 22px;
 
-    border-radius:
-        20px;
+    padding: 28px;
 
-    padding:
-        28px;
-
-    border:
-        1px solid #e1e7f3;
+    border: 1px solid #eee4f2;
 
     box-shadow:
-        0 5px 18px
-        rgba(50,70,110,0.11);
+        0 6px 20px rgba(88, 65, 91, 0.10);
 }
 
 
-/* =====================================================
+/* =========================================================
    QUESTION NUMBER
-===================================================== */
+========================================================= */
 
 .question-number {
+    color: #9a5e72;
 
-    color:
-        #5b4bc4;
+    font-weight: bold;
 
-    font-weight:
-        bold;
-
-    margin-bottom:
-        15px;
+    margin-bottom: 15px;
 }
 
 
-/* =====================================================
+/* =========================================================
    QUESTION
-===================================================== */
+========================================================= */
 
 .question {
+    font-size: 32px;
 
-    font-size:
-        32px;
+    font-weight: bold;
 
-    font-weight:
-        bold;
+    text-align: center;
 
-    text-align:
-        center;
+    margin: 25px 0 30px;
 
-    margin:
-        25px 0 30px;
+    color: #36303b;
 
-    color:
-        #29345b;
+    background: #faf5fc;
 
-    background:
-        #f5f7ff;
+    border-radius: 16px;
 
-    border-radius:
-        15px;
+    padding: 21px;
 
-    padding:
-        20px;
+    border: 1px solid #eee3f2;
 }
 
 
-/* =====================================================
+/* =========================================================
    CHOICES
-===================================================== */
+========================================================= */
 
 .choices {
-
-    display:
-        grid;
+    display: grid;
 
     grid-template-columns:
         1fr 1fr;
 
-    gap:
-        14px;
+    gap: 14px;
 }
 
 .choice {
+    background: #fffaf7;
 
-    background:
-        #f7f9ff;
+    color: #403b45;
 
-    color:
-        #35415c;
+    border: 2px solid #eadfd9;
 
-    border:
-        2px solid #dce3f2;
-
-    min-height:
-        58px;
+    min-height: 58px;
 
     transition:
         all 0.15s ease;
 }
 
 .choice:hover:not(:disabled) {
+    background: #fff2ec;
 
-    background:
-        #edf2ff;
-
-    border-color:
-        #637bd0;
+    border-color: #cf8b8b;
 
     transform:
         translateY(-2px);
 
     box-shadow:
-        0 4px 10px
-        rgba(70,90,150,0.12);
+        0 4px 11px rgba(117, 73, 75, 0.10);
 }
 
 .choice:disabled {
-
-    cursor:
-        default;
+    cursor: default;
 }
+
+
+/* Correct */
 
 .choice.correct {
+    background: #e5f6e9;
 
-    background:
-        #e2f7e8;
+    border-color: #65ae76;
 
-    border-color:
-        #4caf67;
-
-    color:
-        #23703a;
+    color: #276b39;
 }
+
+
+/* Wrong */
 
 .choice.wrong {
+    background: #ffe8e7;
 
-    background:
-        #ffe6e6;
+    border-color: #d87878;
 
-    border-color:
-        #dc6262;
-
-    color:
-        #9b2929;
+    color: #922f2f;
 }
 
 
-/* =====================================================
+/* =========================================================
    EXPLANATION
-===================================================== */
+========================================================= */
 
 .explanation {
+    display: none;
 
-    display:
-        none;
-
-    background:
-        #f0f7ff;
+    background: #f7f1fc;
 
     border-left:
-        6px solid #4b87d4;
+        6px solid #8962ae;
 
-    padding:
-        18px;
+    padding: 18px;
 
-    margin-top:
-        22px;
+    margin-top: 22px;
 
-    border-radius:
-        10px;
+    border-radius: 11px;
 
-    line-height:
-        1.7;
+    line-height: 1.75;
 
-    color:
-        #30415c;
+    color: #403847;
 }
 
 .explanation.show {
-
-    display:
-        block;
+    display: block;
 }
 
 
-/* =====================================================
+/* =========================================================
    NEXT BUTTON
-===================================================== */
+========================================================= */
 
 .next-area {
-
-    text-align:
-        right;
-
-    margin-top:
-        22px;
+    text-align: right;
+    margin-top: 22px;
 }
 
 #nextButton:disabled {
+    opacity: 0.45;
 
-    opacity:
-        0.45;
+    cursor: not-allowed;
 
-    cursor:
-        not-allowed;
-
-    transform:
-        none;
+    transform: none;
 }
 
 
-/* =====================================================
-   RESULT
-===================================================== */
+/* =========================================================
+   RESULT CARD
+========================================================= */
 
 .result-card {
+    background: white;
 
-    background:
-        white;
+    border-radius: 23px;
 
-    border-radius:
-        22px;
+    padding: 36px 25px;
 
-    padding:
-        35px 25px;
+    text-align: center;
 
-    text-align:
-        center;
-
-    border:
-        1px solid #e1e7f3;
+    border: 1px solid #eee4f2;
 
     box-shadow:
-        0 6px 20px
-        rgba(50,70,110,0.15);
+        0 7px 23px rgba(88, 65, 91, 0.13);
 }
 
 .result-card h2 {
-
-    color:
-        #5142b8;
+    color: #694b91;
 }
 
 .score-number {
+    font-size: 62px;
 
-    font-size:
-        60px;
+    font-weight: bold;
 
-    font-weight:
-        bold;
+    color: #8a5ba7;
 
-    color:
-        #5b4bc4;
-
-    margin:
-        15px 0;
+    margin: 15px 0;
 }
 
 .result-stats {
-
-    display:
-        grid;
+    display: grid;
 
     grid-template-columns:
         1fr 1fr 1fr;
 
-    gap:
-        12px;
+    gap: 12px;
 
-    margin:
-        25px 0;
+    margin: 25px 0;
 }
 
 .stat {
+    padding: 18px 10px;
 
-    padding:
-        18px 10px;
+    background: #faf5fc;
 
-    background:
-        #f5f7ff;
+    border-radius: 15px;
 
-    border-radius:
-        14px;
+    border: 1px solid #eee4f2;
 }
 
 .stat strong {
+    display: block;
 
-    display:
-        block;
+    font-size: 28px;
 
-    font-size:
-        28px;
-
-    color:
-        #5142b8;
+    color: #8a5ba7;
 }
 
 .stat span {
-
-    font-size:
-        14px;
+    font-size: 14px;
 }
 
 
-/* =====================================================
+/* =========================================================
    FEEDBACK MODAL
-===================================================== */
+========================================================= */
 
 .modal {
+    display: none;
 
-    display:
-        none;
+    position: fixed;
 
-    position:
-        fixed;
+    z-index: 1000;
 
-    z-index:
-        1000;
-
-    inset:
-        0;
+    inset: 0;
 
     background:
-        rgba(35,27,60,0.6);
+        rgba(51, 38, 55, 0.58);
 
-    align-items:
-        center;
+    align-items: center;
 
-    justify-content:
-        center;
+    justify-content: center;
 
-    padding:
-        20px;
+    padding: 20px;
 }
 
 .modal.show {
-
-    display:
-        flex;
+    display: flex;
 }
 
 .modal-box {
+    width: 100%;
 
-    width:
-        100%;
+    max-width: 410px;
 
-    max-width:
-        400px;
+    background: white;
 
-    background:
-        white;
+    border-radius: 23px;
 
-    border-radius:
-        22px;
+    padding: 30px;
 
-    padding:
-        30px;
-
-    text-align:
-        center;
+    text-align: center;
 
     box-shadow:
-        0 10px 35px
-        rgba(0,0,0,0.25);
+        0 12px 38px rgba(0,0,0,0.22);
 
     animation:
         pop 0.25s ease;
@@ -851,131 +671,89 @@ button:hover {
 @keyframes pop {
 
     from {
-
-        transform:
-            scale(0.8);
-
-        opacity:
-            0;
+        transform: scale(0.82);
+        opacity: 0;
     }
 
     to {
-
-        transform:
-            scale(1);
-
-        opacity:
-            1;
+        transform: scale(1);
+        opacity: 1;
     }
 }
 
 .modal-icon {
+    font-size: 56px;
 
-    font-size:
-        55px;
-
-    margin-bottom:
-        10px;
+    margin-bottom: 10px;
 }
 
 .modal-box h2 {
+    margin: 5px 0 10px;
 
-    margin:
-        5px 0 10px;
-
-    color:
-        #5142b8;
+    color: #694b91;
 }
 
 .modal-box p {
+    line-height: 1.65;
 
-    line-height:
-        1.6;
-
-    margin-bottom:
-        22px;
+    margin-bottom: 22px;
 }
 
 
-/* =====================================================
+/* =========================================================
    FOOTER
-===================================================== */
+========================================================= */
 
 footer {
+    text-align: center;
 
-    text-align:
-        center;
+    padding: 25px;
 
-    padding:
-        25px;
+    color: #766d78;
 
-    color:
-        #6e6780;
-
-    font-size:
-        14px;
+    font-size: 14px;
 }
 
 
-/* =====================================================
+/* =========================================================
    MOBILE
-===================================================== */
+========================================================= */
 
 @media (max-width: 600px) {
 
     header {
-
-        padding:
-            14px 12px;
+        padding: 14px 12px;
     }
 
     header h1 {
-
-        font-size:
-            22px;
+        font-size: 22px;
     }
 
     header p {
-
-        font-size:
-            13px;
+        font-size: 13px;
     }
 
     .card,
     .question-card {
-
-        padding:
-            20px;
+        padding: 20px;
     }
 
     .question {
-
-        font-size:
-            26px;
-
-        padding:
-            16px;
+        font-size: 26px;
+        padding: 16px;
     }
 
     .choices {
-
-        grid-template-columns:
-            1fr;
+        grid-template-columns: 1fr;
     }
 
     .result-stats {
-
-        grid-template-columns:
-            1fr;
+        grid-template-columns: 1fr;
     }
 
     .secondary-btn {
-
-        margin-left:
-            0;
-
-        margin-top:
-            10px;
+        margin-left: 0;
+        margin-top: 10px;
     }
 
 }
@@ -987,9 +765,9 @@ footer {
 <body>
 
 
-<!-- =====================================================
+<!-- =========================================================
      HEADER
-===================================================== -->
+========================================================= -->
 
 <header>
 
@@ -998,7 +776,7 @@ footer {
     </h1>
 
     <p>
-        Learn the process • Practice • Master signed numbers
+        Learn • Practice • Master Signed Numbers
     </p>
 
 </header>
@@ -1007,9 +785,9 @@ footer {
 <div class="container">
 
 
-<!-- =====================================================
-     HOME / LESSON
-===================================================== -->
+<!-- =========================================================
+     LESSON SCREEN
+========================================================= -->
 
 <section
     id="homeScreen"
@@ -1017,7 +795,9 @@ footer {
 >
 
 
-    <!-- WHAT ARE INTEGERS -->
+    <!-- =====================================================
+         WHAT ARE INTEGERS
+    ====================================================== -->
 
     <div class="card">
 
@@ -1035,7 +815,7 @@ footer {
         <div class="example">
 
             <strong>
-                Examples of integers:
+                Examples:
             </strong>
 
             <p class="math">
@@ -1050,7 +830,9 @@ footer {
     </div>
 
 
-    <!-- ABSOLUTE VALUE -->
+    <!-- =====================================================
+         ABSOLUTE VALUE
+    ====================================================== -->
 
     <div class="card">
 
@@ -1061,11 +843,8 @@ footer {
         <p class="intro">
 
             The <strong>absolute value</strong>
-            of a number tells us how far that
-            number is from zero.
-
-            For now, think of it as the number
-            without its positive or negative sign.
+            of a number tells us how far the number
+            is from zero.
 
         </p>
 
@@ -1091,21 +870,21 @@ footer {
 
         <div class="tip">
 
-            ⭐ Absolute value helps us compare
-            the size of numbers.
+            ⭐ Think of absolute value as the
+            <strong>distance from zero</strong>.
 
-            For example, between
-            <strong>-5</strong> and
-            <strong>+2</strong>,
-            the absolute value of -5 is 5,
-            while the absolute value of +2 is 2.
+            <br><br>
+
+            Distance is never negative.
 
         </div>
 
     </div>
 
 
-    <!-- ADDITION LESSON -->
+    <!-- =====================================================
+         ADDITION
+    ====================================================== -->
 
     <div class="card">
 
@@ -1115,8 +894,8 @@ footer {
 
         <p class="intro">
 
-            When adding integers,
-            first look at the signs.
+            When adding integers, first look at
+            the signs of the numbers.
 
         </p>
 
@@ -1155,12 +934,7 @@ footer {
             </p>
 
             <p>
-                Add the numbers:
                 3 + 2 = 5
-            </p>
-
-            <p>
-                Keep the positive sign.
             </p>
 
             <p class="math">
@@ -1185,12 +959,7 @@ footer {
             </p>
 
             <p>
-                Add the numbers:
                 3 + 2 = 5
-            </p>
-
-            <p>
-                Keep the negative sign.
             </p>
 
             <p class="math">
@@ -1213,16 +982,13 @@ footer {
             <br><br>
 
             <strong>
-                BIG NUMBER − SMALL NUMBER
+                BIG − SMALL
             </strong>
 
             <br><br>
 
-            Then use the
-            <strong>
-                sign of the BIG number
-            </strong>
-            as the sign of the answer.
+            Then use the sign of the number
+            with the greater absolute value.
 
         </div>
 
@@ -1238,16 +1004,15 @@ footer {
             </p>
 
             <p>
-                The signs are opposite.
+                Opposite signs.
             </p>
 
             <p>
-                BIG − SMALL:
                 5 − 2 = 3
             </p>
 
             <p>
-                The BIG number is +5.
+                The bigger number is +5.
             </p>
 
             <p class="math">
@@ -1268,16 +1033,15 @@ footer {
             </p>
 
             <p>
-                The signs are opposite.
+                Opposite signs.
             </p>
 
             <p>
-                BIG − SMALL:
                 5 − 2 = 3
             </p>
 
             <p>
-                The BIG number is -5.
+                The bigger number is -5.
             </p>
 
             <p class="math">
@@ -1289,7 +1053,7 @@ footer {
 
         <div class="tip">
 
-            🧠 <strong>Easy reminder:</strong>
+            🧠 <strong>Remember:</strong>
 
             <br><br>
 
@@ -1304,7 +1068,7 @@ footer {
             <strong>
                 BIG − SMALL,
             </strong>
-            then use the sign of the BIG number.
+            then use the sign of the bigger number.
 
         </div>
 
@@ -1325,16 +1089,17 @@ footer {
 
         <div class="bank-info">
 
-            Question Bank:
-            <strong>100 Questions</strong>
-            • Randomly selects 25
+            🎲 100-question bank →
+            25 random questions per quiz
 
         </div>
 
     </div>
 
 
-    <!-- SUBTRACTION LESSON -->
+    <!-- =====================================================
+         SUBTRACTION
+    ====================================================== -->
 
     <div class="card">
 
@@ -1344,8 +1109,8 @@ footer {
 
         <p class="intro">
 
-            Subtraction becomes easier when
-            we change it into addition.
+            Subtraction becomes easier when we
+            change it into addition.
 
         </p>
 
@@ -1358,18 +1123,17 @@ footer {
 
             <br><br>
 
-            1. <strong>KEEP</strong>
-            the first number.
+            1. <strong>KEEP</strong> the first number.
 
             <br>
 
-            2. <strong>CHANGE</strong>
-            subtraction (−) into addition (+).
+            2. <strong>CHANGE</strong> subtraction
+            into addition.
 
             <br>
 
-            3. <strong>CHANGE</strong>
-            the sign of the second number.
+            3. <strong>CHANGE</strong> the sign of
+            the second number.
 
             <br><br>
 
@@ -1402,11 +1166,6 @@ footer {
 
             <p class="math">
                 5 + (-2)
-            </p>
-
-            <p>
-                Opposite signs →
-                BIG − SMALL.
             </p>
 
             <p>
@@ -1447,10 +1206,6 @@ footer {
             </p>
 
             <p>
-                Same signs → ADD.
-            </p>
-
-            <p>
                 5 + 2 = 7
             </p>
 
@@ -1488,11 +1243,7 @@ footer {
             </p>
 
             <p>
-                Same signs → ADD.
-            </p>
-
-            <p>
-                5 + 2 = 7.
+                -5 − 2 = -7
             </p>
 
             <p class="math">
@@ -1529,11 +1280,6 @@ footer {
             </p>
 
             <p>
-                Opposite signs →
-                BIG − SMALL.
-            </p>
-
-            <p>
                 5 − 2 = 3.
             </p>
 
@@ -1550,7 +1296,7 @@ footer {
 
             <br><br>
 
-            Subtraction:
+            Subtraction →
 
             <strong>
                 KEEP – CHANGE – CHANGE
@@ -1558,8 +1304,7 @@ footer {
 
             <br><br>
 
-            After that,
-            use the addition rules.
+            Then use the addition rules.
 
         </div>
 
@@ -1580,9 +1325,8 @@ footer {
 
         <div class="bank-info">
 
-            Question Bank:
-            <strong>100 Questions</strong>
-            • Randomly selects 25
+            🎲 100-question bank →
+            25 random questions per quiz
 
         </div>
 
@@ -1591,15 +1335,14 @@ footer {
 </section>
 
 
-<!-- =====================================================
+<!-- =========================================================
      QUIZ SCREEN
-===================================================== -->
+========================================================= -->
 
 <section
     id="quizScreen"
     class="screen"
 >
-
 
     <div class="quiz-header">
 
@@ -1617,7 +1360,6 @@ footer {
 
 
     <div class="question-card">
-
 
         <div
             id="questionNumber"
@@ -1663,18 +1405,16 @@ footer {
 </section>
 
 
-<!-- =====================================================
-     RESULT SCREEN
-===================================================== -->
+<!-- =========================================================
+     RESULTS
+========================================================= -->
 
 <section
     id="resultScreen"
     class="screen"
 >
 
-
     <div class="result-card">
-
 
         <h2 id="resultTitle">
             Quiz Complete!
@@ -1685,9 +1425,7 @@ footer {
             id="scoreNumber"
             class="score-number"
         >
-
             0/25
-
         </div>
 
 
@@ -1698,12 +1436,9 @@ footer {
 
         <div class="result-stats">
 
-
             <div class="stat">
 
-                <strong
-                    id="correctCount"
-                >
+                <strong id="correctCount">
                     0
                 </strong>
 
@@ -1716,9 +1451,7 @@ footer {
 
             <div class="stat">
 
-                <strong
-                    id="wrongCount"
-                >
+                <strong id="wrongCount">
                     0
                 </strong>
 
@@ -1731,9 +1464,7 @@ footer {
 
             <div class="stat">
 
-                <strong
-                    id="percentage"
-                >
+                <strong id="percentage">
                     0%
                 </strong>
 
@@ -1743,7 +1474,6 @@ footer {
 
             </div>
 
-
         </div>
 
 
@@ -1752,7 +1482,6 @@ footer {
 
 
         <div class="button-area">
-
 
             <button
                 class="primary-btn"
@@ -1773,7 +1502,6 @@ footer {
 
             </button>
 
-
         </div>
 
     </div>
@@ -1784,13 +1512,13 @@ footer {
 </div>
 
 
-<!-- =====================================================
+<!-- =========================================================
      FOOTER
-===================================================== -->
+========================================================= -->
 
 <footer>
 
-    Adding and Subtracting Integers Practice
+    Adding & Subtracting Integers
 
     <br>
 
@@ -1799,18 +1527,16 @@ footer {
 </footer>
 
 
-<!-- =====================================================
+<!-- =========================================================
      FEEDBACK MODAL
-===================================================== -->
+========================================================= -->
 
 <div
     id="feedbackModal"
     class="modal"
 >
 
-
     <div class="modal-box">
-
 
         <div
             id="modalIcon"
@@ -1837,7 +1563,6 @@ footer {
 
         </button>
 
-
     </div>
 
 </div>
@@ -1845,108 +1570,71 @@ footer {
 
 <script>
 
-
-/* =====================================================
-   QUIZ SETTINGS
-===================================================== */
+/* =========================================================
+   SETTINGS
+========================================================= */
 
 const QUESTIONS_PER_QUIZ = 25;
 
 
-/* =====================================================
-   QUESTION CREATION
-=====================================================
-
-   Instead of manually writing 200 objects,
-   JavaScript creates a bank of 100 addition
-   and 100 subtraction questions.
-
-===================================================== */
-
-
-/* =====================================================
+/* =========================================================
    FORMAT INTEGER
-===================================================== */
+========================================================= */
 
 function formatInteger(number) {
 
     if (number > 0) {
-
         return "+" + number;
-
     }
 
     return String(number);
 }
 
 
-/* =====================================================
-   CREATE ANSWER CHOICES
-===================================================== */
+/* =========================================================
+   CREATE CHOICES
+========================================================= */
 
 function createChoices(answer) {
 
-    const choices =
-        new Set();
+    const choices = new Set();
 
+    choices.add(String(answer));
 
-    choices.add(
-        String(answer)
-    );
-
-
-    const possibleWrongAnswers = [
+    const wrongAnswers = [
 
         answer + 1,
-
         answer - 1,
-
         -answer,
-
         answer + 2,
-
         answer - 2,
-
         answer + 3,
-
         answer - 3,
-
         answer + 5,
-
         answer - 5,
-
         answer + 10,
-
         answer - 10
 
     ];
 
 
-    possibleWrongAnswers.forEach(
-        value => {
+    wrongAnswers.forEach(value => {
 
-            if (
-                choices.size < 4 &&
-                String(value) !==
-                String(answer)
-            ) {
+        if (
+            choices.size < 4 &&
+            String(value) !== String(answer)
+        ) {
 
-                choices.add(
-                    String(value)
-                );
-
-            }
+            choices.add(String(value));
 
         }
-    );
+
+    });
 
 
     let offset = 1;
 
-
-    while (
-        choices.size < 4
-    ) {
+    while (choices.size < 4) {
 
         choices.add(
             String(answer + offset)
@@ -1957,15 +1645,13 @@ function createChoices(answer) {
     }
 
 
-    return Array.from(
-        choices
-    );
+    return Array.from(choices);
 }
 
 
-/* =====================================================
+/* =========================================================
    CREATE EXPLANATION
-===================================================== */
+========================================================= */
 
 function createExplanation(
     a,
@@ -1974,13 +1660,11 @@ function createExplanation(
     answer
 ) {
 
-
-    /* =========================
+    /* -----------------------------
        ADDITION
-    ========================= */
+    ----------------------------- */
 
     if (operator === "+") {
-
 
         const sameSigns =
             (a > 0 && b > 0) ||
@@ -1988,7 +1672,6 @@ function createExplanation(
 
 
         if (sameSigns) {
-
 
             return `
 
@@ -1999,7 +1682,7 @@ function createExplanation(
 
                 Same signs →
                 <strong>ADD</strong>
-                the absolute values
+                their absolute values
                 and keep the sign.
 
                 <br><br>
@@ -2009,10 +1692,6 @@ function createExplanation(
                 ${Math.abs(b)}
                 =
                 ${Math.abs(answer)}
-
-                <br><br>
-
-                Keep the sign.
 
                 <br><br>
 
@@ -2075,12 +1754,11 @@ function createExplanation(
     }
 
 
-    /* =========================
+    /* -----------------------------
        SUBTRACTION
-    ========================= */
+    ----------------------------- */
 
-    const changedB =
-        -b;
+    const changedB = -b;
 
 
     const sameSigns =
@@ -2088,13 +1766,12 @@ function createExplanation(
         (a < 0 && changedB < 0);
 
 
-    let secondPart;
+    let solution;
 
 
     if (sameSigns) {
 
-
-        secondPart = `
+        solution = `
 
             The signs are the same.
 
@@ -2121,7 +1798,6 @@ function createExplanation(
 
     else {
 
-
         const big =
             Math.max(
                 Math.abs(a),
@@ -2136,7 +1812,7 @@ function createExplanation(
             );
 
 
-        secondPart = `
+        solution = `
 
             The signs are opposite.
 
@@ -2155,9 +1831,8 @@ function createExplanation(
 
             <br><br>
 
-            Use the sign of the
-            number with the greater
-            absolute value.
+            Use the sign of the number
+            with the greater absolute value.
 
         `;
 
@@ -2187,8 +1862,7 @@ function createExplanation(
 
         <br>
 
-        CHANGE the sign of the
-        second number:
+        CHANGE the sign of the second number:
 
         <br>
 
@@ -2198,7 +1872,7 @@ function createExplanation(
 
         <br><br>
 
-        ${secondPart}
+        ${solution}
 
         <br>
 
@@ -2211,9 +1885,9 @@ function createExplanation(
 }
 
 
-/* =====================================================
+/* =========================================================
    CREATE QUESTION
-===================================================== */
+========================================================= */
 
 function createQuestion(
     a,
@@ -2221,22 +1895,14 @@ function createQuestion(
     b
 ) {
 
-
     let answer;
 
 
     if (operator === "+") {
-
-        answer =
-            a + b;
-
+        answer = a + b;
     }
-
     else {
-
-        answer =
-            a - b;
-
+        answer = a - b;
     }
 
 
@@ -2270,13 +1936,9 @@ function createQuestion(
 }
 
 
-/* =====================================================
-   ADDITION QUESTION BANK
-=====================================================
-
-   Exactly 100 questions.
-
-===================================================== */
+/* =========================================================
+   ADDITION BANK
+========================================================= */
 
 function createAdditionBank() {
 
@@ -2289,21 +1951,17 @@ function createAdditionBank() {
         a++
     ) {
 
-
         for (
             let b = -10;
             b <= 10;
             b++
         ) {
 
-
             if (
                 a === 0 ||
                 b === 0
             ) {
-
                 continue;
-
             }
 
 
@@ -2319,9 +1977,7 @@ function createAdditionBank() {
             if (
                 bank.length >= 100
             ) {
-
                 return bank;
-
             }
 
         }
@@ -2333,13 +1989,9 @@ function createAdditionBank() {
 }
 
 
-/* =====================================================
-   SUBTRACTION QUESTION BANK
-=====================================================
-
-   Exactly 100 questions.
-
-===================================================== */
+/* =========================================================
+   SUBTRACTION BANK
+========================================================= */
 
 function createSubtractionBank() {
 
@@ -2352,21 +2004,17 @@ function createSubtractionBank() {
         a++
     ) {
 
-
         for (
             let b = -10;
             b <= 10;
             b++
         ) {
 
-
             if (
                 a === 0 ||
                 b === 0
             ) {
-
                 continue;
-
             }
 
 
@@ -2382,9 +2030,7 @@ function createSubtractionBank() {
             if (
                 bank.length >= 100
             ) {
-
                 return bank;
-
             }
 
         }
@@ -2396,21 +2042,20 @@ function createSubtractionBank() {
 }
 
 
-/* =====================================================
-   CREATE BOTH QUESTION BANKS
-===================================================== */
+/* =========================================================
+   QUESTION BANKS
+========================================================= */
 
 const additionQuestions =
     createAdditionBank();
-
 
 const subtractionQuestions =
     createSubtractionBank();
 
 
-/* =====================================================
+/* =========================================================
    QUIZ VARIABLES
-===================================================== */
+========================================================= */
 
 let currentQuiz = [];
 
@@ -2425,25 +2070,20 @@ let wrongAnswers = 0;
 let answered = false;
 
 
-/* =====================================================
-   SHUFFLE
-===================================================== */
+/* =========================================================
+   SHUFFLE ARRAY
+========================================================= */
 
 function shuffleArray(array) {
 
-    const shuffled =
-        [...array];
+    const shuffled = [...array];
 
 
     for (
-        let i =
-            shuffled.length - 1;
-
+        let i = shuffled.length - 1;
         i > 0;
-
         i--
     ) {
-
 
         const randomIndex =
             Math.floor(
@@ -2468,9 +2108,9 @@ function shuffleArray(array) {
 }
 
 
-/* =====================================================
-   GET RANDOM 25 QUESTIONS
-===================================================== */
+/* =========================================================
+   SELECT RANDOM 25
+========================================================= */
 
 function getRandomQuestions(
     questionBank
@@ -2485,26 +2125,21 @@ function getRandomQuestions(
 }
 
 
-/* =====================================================
+/* =========================================================
    START QUIZ
-===================================================== */
+========================================================= */
 
 function startQuiz(type) {
 
-    quizType =
-        type;
+    quizType = type;
 
 
-    if (
-        type === "addition"
-    ) {
-
+    if (type === "addition") {
 
         currentQuiz =
             getRandomQuestions(
                 additionQuestions
             );
-
 
         document.getElementById(
             "quizTitle"
@@ -2515,12 +2150,10 @@ function startQuiz(type) {
 
     else {
 
-
         currentQuiz =
             getRandomQuestions(
                 subtractionQuestions
             );
-
 
         document.getElementById(
             "quizTitle"
@@ -2548,14 +2181,13 @@ function startQuiz(type) {
 }
 
 
-/* =====================================================
+/* =========================================================
    LOAD QUESTION
-===================================================== */
+========================================================= */
 
 function loadQuestion() {
 
-    answered =
-        false;
+    answered = false;
 
 
     const question =
@@ -2569,9 +2201,7 @@ function loadQuestion() {
     ).textContent =
 
         "Question " +
-        (
-            currentQuestion + 1
-        ) +
+        (currentQuestion + 1) +
         " of " +
         currentQuiz.length;
 
@@ -2595,10 +2225,6 @@ function loadQuestion() {
         progress + "%";
 
 
-    /* =========================
-       RANDOMIZE CHOICES
-    ========================= */
-
     const randomizedChoices =
         shuffleArray(
             question.choices
@@ -2611,13 +2237,11 @@ function loadQuestion() {
         );
 
 
-    choicesContainer.innerHTML =
-        "";
+    choicesContainer.innerHTML = "";
 
 
     randomizedChoices.forEach(
         choice => {
-
 
             const button =
                 document.createElement(
@@ -2630,9 +2254,7 @@ function loadQuestion() {
 
 
             button.textContent =
-                formatChoice(
-                    choice
-                );
+                formatChoice(choice);
 
 
             button.onclick =
@@ -2654,25 +2276,23 @@ function loadQuestion() {
     );
 
 
-    document.getElementById(
-        "explanation"
-    )
-    .classList
-    .remove(
+    const explanation =
+        document.getElementById(
+            "explanation"
+        );
+
+
+    explanation.classList.remove(
         "show"
     );
 
 
-    document.getElementById(
-        "explanation"
-    ).innerHTML =
-        "";
+    explanation.innerHTML = "";
 
 
     document.getElementById(
         "nextButton"
-    ).disabled =
-        true;
+    ).disabled = true;
 
 
     if (
@@ -2699,24 +2319,18 @@ function loadQuestion() {
 }
 
 
-/* =====================================================
+/* =========================================================
    FORMAT CHOICE
-===================================================== */
+========================================================= */
 
-function formatChoice(
-    value
-) {
+function formatChoice(value) {
 
     const number =
         Number(value);
 
 
-    if (
-        number > 0
-    ) {
-
+    if (number > 0) {
         return "+" + number;
-
     }
 
 
@@ -2724,27 +2338,21 @@ function formatChoice(
 }
 
 
-/* =====================================================
+/* =========================================================
    SELECT ANSWER
-===================================================== */
+========================================================= */
 
 function selectAnswer(
     choice,
     selectedButton
 ) {
 
-
-    if (
-        answered
-    ) {
-
+    if (answered) {
         return;
-
     }
 
 
-    answered =
-        true;
+    answered = true;
 
 
     const question =
@@ -2761,10 +2369,7 @@ function selectAnswer(
 
     allChoices.forEach(
         button => {
-
-            button.disabled =
-                true;
-
+            button.disabled = true;
         }
     );
 
@@ -2774,60 +2379,45 @@ function selectAnswer(
         String(question.answer)
     ) {
 
-
         correctAnswers++;
 
 
-        selectedButton
-            .classList
-            .add(
-                "correct"
-            );
-
-
-        showFeedback(
-            true
+        selectedButton.classList.add(
+            "correct"
         );
+
+
+        showFeedback(true);
 
     }
 
     else {
 
-
         wrongAnswers++;
 
 
-        selectedButton
-            .classList
-            .add(
-                "wrong"
-            );
+        selectedButton.classList.add(
+            "wrong"
+        );
 
 
         allChoices.forEach(
             button => {
 
-
                 const value =
                     button.textContent
-                    .replace(
-                        "+",
-                        ""
-                    )
+                    .replace("+", "")
                     .trim();
 
 
                 if (
                     value ===
-                    String(
-                        question.answer
-                    )
+                    String(question.answer)
                 ) {
 
-                    button.classList
-                        .add(
-                            "correct"
-                        );
+                    button.classList.add(
+                        "correct"
+                    );
 
                 }
 
@@ -2835,23 +2425,20 @@ function selectAnswer(
         );
 
 
-        showFeedback(
-            false
-        );
+        showFeedback(false);
 
     }
 
 }
 
 
-/* =====================================================
-   FEEDBACK
-===================================================== */
+/* =========================================================
+   FEEDBACK MODAL
+========================================================= */
 
 function showFeedback(
     isCorrect
 ) {
-
 
     const modal =
         document.getElementById(
@@ -2877,37 +2464,27 @@ function showFeedback(
         );
 
 
-    if (
-        isCorrect
-    ) {
+    if (isCorrect) {
 
-
-        icon.textContent =
-            "🎉";
-
+        icon.textContent = "🎉";
 
         title.textContent =
-            "Good Job!";
-
+            "Correct!";
 
         message.textContent =
-            "That's correct! You understood the process. Keep going!";
+            "Excellent! You got it right. Keep going!";
 
     }
 
     else {
 
-
-        icon.textContent =
-            "💪";
-
+        icon.textContent = "💪";
 
         title.textContent =
             "Keep Practicing!";
 
-
         message.textContent =
-            "That's okay! Review the steps carefully and keep practicing.";
+            "That's okay! Check the explanation and use it to learn from the mistake.";
 
     }
 
@@ -2919,18 +2496,15 @@ function showFeedback(
 }
 
 
-/* =====================================================
+/* =========================================================
    CLOSE FEEDBACK
-===================================================== */
+========================================================= */
 
 function closeFeedback() {
 
-
     document.getElementById(
         "feedbackModal"
-    )
-    .classList
-    .remove(
+    ).classList.remove(
         "show"
     );
 
@@ -2949,7 +2523,7 @@ function closeFeedback() {
 
     explanation.innerHTML =
 
-        "<strong>💡 Explanation:</strong>" +
+        "<strong>💡 Let's understand it:</strong>" +
         "<br><br>" +
         question.explanation;
 
@@ -2961,25 +2535,19 @@ function closeFeedback() {
 
     document.getElementById(
         "nextButton"
-    ).disabled =
-        false;
+    ).disabled = false;
 
 }
 
 
-/* =====================================================
+/* =========================================================
    NEXT QUESTION
-===================================================== */
+========================================================= */
 
 function nextQuestion() {
 
-
-    if (
-        !answered
-    ) {
-
+    if (!answered) {
         return;
-
     }
 
 
@@ -2988,16 +2556,13 @@ function nextQuestion() {
         currentQuiz.length - 1
     ) {
 
-
         currentQuestion++;
-
 
         loadQuestion();
 
     }
 
     else {
-
 
         showResults();
 
@@ -3006,12 +2571,11 @@ function nextQuestion() {
 }
 
 
-/* =====================================================
-   RESULTS
-===================================================== */
+/* =========================================================
+   SHOW RESULTS
+========================================================= */
 
 function showResults() {
-
 
     const percentage =
         Math.round(
@@ -3052,41 +2616,31 @@ function showResults() {
     let message;
 
 
-    if (
-        percentage === 100
-    ) {
-
+    if (percentage === 100) {
 
         message =
-            "🌟 Excellent! You mastered the process!";
+            "🌟 Perfect Score! You mastered the lesson!";
 
     }
 
-    else if (
-        percentage >= 80
-    ) {
-
+    else if (percentage >= 80) {
 
         message =
-            "👏 Great job! You have a strong understanding of the process.";
+            "👏 Excellent work! You have a strong understanding.";
 
     }
 
-    else if (
-        percentage >= 60
-    ) {
-
+    else if (percentage >= 60) {
 
         message =
-            "👍 Good effort! Review the rules and practice some more.";
+            "👍 Good effort! Review the rules and try again.";
 
     }
 
     else {
 
-
         message =
-            "💪 Keep practicing! Go back to the lesson and review the steps.";
+            "💪 Don't give up! Review the lesson and practice again.";
 
     }
 
@@ -3098,10 +2652,8 @@ function showResults() {
 
 
     if (
-        quizType ===
-        "addition"
+        quizType === "addition"
     ) {
-
 
         document.getElementById(
             "resultTitle"
@@ -3111,7 +2663,6 @@ function showResults() {
     }
 
     else {
-
 
         document.getElementById(
             "resultTitle"
@@ -3128,15 +2679,15 @@ function showResults() {
 }
 
 
-/* =====================================================
+/* =========================================================
    TRY AGAIN
-===================================================== */
+========================================================= */
 
 function restartQuiz() {
 
     /*
-       A new random set of 25 is selected
-       from the 100-question bank.
+       Selecting the same quiz again creates
+       a new random set of 25 questions.
     */
 
     startQuiz(
@@ -3146,18 +2697,15 @@ function restartQuiz() {
 }
 
 
-/* =====================================================
+/* =========================================================
    BACK TO LESSON
-===================================================== */
+========================================================= */
 
 function backToLessons() {
 
-
     document.getElementById(
         "feedbackModal"
-    )
-    .classList
-    .remove(
+    ).classList.remove(
         "show"
     );
 
@@ -3171,22 +2719,20 @@ function backToLessons() {
 
         top: 0,
 
-        behavior:
-            "smooth"
+        behavior: "smooth"
 
     });
 
 }
 
 
-/* =====================================================
+/* =========================================================
    SCREEN CONTROL
-===================================================== */
+========================================================= */
 
 function showScreen(
     screenId
 ) {
-
 
     document
         .querySelectorAll(
@@ -3195,10 +2741,9 @@ function showScreen(
         .forEach(
             screen => {
 
-                screen.classList
-                    .remove(
-                        "active"
-                    );
+                screen.classList.remove(
+                    "active"
+                );
 
             }
         );
@@ -3206,9 +2751,7 @@ function showScreen(
 
     document.getElementById(
         screenId
-    )
-    .classList
-    .add(
+    ).classList.add(
         "active"
     );
 
@@ -3217,8 +2760,7 @@ function showScreen(
 
         top: 0,
 
-        behavior:
-            "smooth"
+        behavior: "smooth"
 
     });
 
