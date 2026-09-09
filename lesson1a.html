@@ -1,0 +1,1980 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Adding and Subtracting Integers</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg, #f4efff, #eaf4ff);
+    color: #292342;
+}
+
+.container {
+    width: 92%;
+    max-width: 850px;
+    margin: auto;
+}
+
+header {
+    background: linear-gradient(135deg, #7657c8, #658fd8);
+    color: white;
+    padding: 28px 20px;
+    text-align: center;
+    border-radius: 0 0 25px 25px;
+    box-shadow: 0 5px 18px rgba(70, 50, 120, 0.2);
+}
+
+header h1 {
+    margin: 0 0 8px;
+    font-size: 30px;
+}
+
+header p {
+    margin: 0;
+    font-size: 16px;
+}
+
+.screen {
+    display: none;
+    padding: 25px 0 40px;
+}
+
+.screen.active {
+    display: block;
+}
+
+.card {
+    background: rgba(255,255,255,0.95);
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 22px;
+    box-shadow: 0 5px 18px rgba(70, 50, 120, 0.12);
+}
+
+.card h2 {
+    color: #6345ad;
+    margin-top: 0;
+}
+
+.card h3 {
+    color: #536ebc;
+}
+
+.intro {
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+.rule {
+    background: #f0ebff;
+    border-left: 6px solid #7657c8;
+    padding: 18px;
+    border-radius: 10px;
+    margin: 18px 0;
+    line-height: 1.7;
+}
+
+.example {
+    background: #f7faff;
+    border: 1px solid #dce5fa;
+    border-radius: 12px;
+    padding: 16px;
+    margin: 14px 0;
+    line-height: 1.8;
+}
+
+.math {
+    font-size: 22px;
+    font-weight: bold;
+    color: #53379c;
+}
+
+.tip {
+    background: #fff8dc;
+    border-left: 6px solid #e3b52e;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 15px;
+    line-height: 1.6;
+}
+
+.button-area {
+    text-align: center;
+    margin: 25px 0;
+}
+
+button {
+    border: none;
+    border-radius: 12px;
+    padding: 13px 22px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+}
+
+.primary-btn {
+    background: linear-gradient(135deg, #7657c8, #658fd8);
+    color: white;
+    box-shadow: 0 4px 10px rgba(80,60,150,0.2);
+}
+
+.secondary-btn {
+    background: #e9e3ff;
+    color: #553b9c;
+}
+
+.quiz-header {
+    background: white;
+    padding: 20px;
+    border-radius: 18px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 14px rgba(70,50,120,0.1);
+}
+
+.quiz-header h2 {
+    margin: 0 0 15px;
+    color: #6044a9;
+}
+
+.progress-container {
+    width: 100%;
+    height: 12px;
+    background: #e5e0f2;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+#progressBar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #7657c8, #658fd8);
+    transition: width 0.3s;
+}
+
+.question-card {
+    background: white;
+    border-radius: 20px;
+    padding: 28px;
+    box-shadow: 0 5px 18px rgba(70,50,120,0.12);
+}
+
+.question-number {
+    color: #7657c8;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.question {
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    margin: 25px 0 30px;
+    color: #33285b;
+}
+
+.choices {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.choice {
+    background: #f5f2ff;
+    color: #403468;
+    border: 2px solid #ded7f5;
+    min-height: 58px;
+}
+
+.choice:hover:not(:disabled) {
+    background: #e9e3ff;
+    border-color: #7657c8;
+}
+
+.choice:disabled {
+    cursor: default;
+}
+
+.choice.correct {
+    background: #dff5e5;
+    border-color: #45a95e;
+    color: #207036;
+}
+
+.choice.wrong {
+    background: #ffe1e1;
+    border-color: #dc5555;
+    color: #9b2727;
+}
+
+.explanation {
+    display: none;
+    background: #eef5ff;
+    border-left: 6px solid #658fd8;
+    padding: 18px;
+    margin-top: 22px;
+    border-radius: 10px;
+    line-height: 1.7;
+}
+
+.explanation.show {
+    display: block;
+}
+
+.next-area {
+    text-align: right;
+    margin-top: 22px;
+}
+
+#nextButton:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.result-card {
+    background: white;
+    border-radius: 22px;
+    padding: 35px 25px;
+    text-align: center;
+    box-shadow: 0 6px 20px rgba(70,50,120,0.15);
+}
+
+.result-card h2 {
+    color: #6345ad;
+}
+
+.score-number {
+    font-size: 60px;
+    font-weight: bold;
+    color: #7657c8;
+    margin: 15px 0;
+}
+
+.result-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    margin: 25px 0;
+}
+
+.stat {
+    padding: 18px 10px;
+    background: #f5f2ff;
+    border-radius: 14px;
+}
+
+.stat strong {
+    display: block;
+    font-size: 28px;
+    color: #5e48a4;
+}
+
+.stat span {
+    font-size: 14px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    background: rgba(35, 27, 60, 0.6);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-box {
+    width: 100%;
+    max-width: 400px;
+    background: white;
+    border-radius: 22px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.25);
+    animation: pop 0.25s ease;
+}
+
+@keyframes pop {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.modal-icon {
+    font-size: 55px;
+    margin-bottom: 10px;
+}
+
+.modal-box h2 {
+    margin: 5px 0 10px;
+    color: #6044a9;
+}
+
+.modal-box p {
+    line-height: 1.6;
+    margin-bottom: 22px;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #6e6780;
+    font-size: 14px;
+}
+
+.bank-info {
+    text-align: center;
+    font-size: 14px;
+    color: #6e6780;
+    margin-top: 15px;
+}
+
+@media (max-width: 600px) {
+
+    header h1 {
+        font-size: 24px;
+    }
+
+    .card,
+    .question-card {
+        padding: 20px;
+    }
+
+    .question {
+        font-size: 26px;
+    }
+
+    .choices {
+        grid-template-columns: 1fr;
+    }
+
+    .result-stats {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <h1>➕➖ Adding & Subtracting Integers</h1>
+
+    <p>
+        Learn the process, practice, and master signed numbers.
+    </p>
+
+</header>
+
+
+<div class="container">
+
+
+<!-- =====================================================
+     HOME / LESSON SCREEN
+====================================================== -->
+
+<section id="homeScreen" class="screen active">
+
+    <div class="card">
+
+        <h2>📘 What Are Integers?</h2>
+
+        <p class="intro">
+
+            Integers are whole numbers that can be positive,
+            negative, or zero.
+
+        </p>
+
+        <div class="example">
+
+            <strong>Examples of integers:</strong>
+
+            <p class="math">
+                ... -5, -4, -3, -2, -1, 0, +1, +2, +3, +4, +5 ...
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ABSOLUTE VALUE -->
+
+    <div class="card">
+
+        <h2>📏 Understanding Absolute Value</h2>
+
+        <p class="intro">
+
+            The <strong>absolute value</strong> of a number
+            tells us how far that number is from zero.
+
+            For now, think of it as the number without its
+            positive or negative sign.
+
+        </p>
+
+        <div class="example">
+
+            <p class="math">|+4| = 4</p>
+
+            <p class="math">|-4| = 4</p>
+
+            <p class="math">|0| = 0</p>
+
+        </div>
+
+        <div class="tip">
+
+            ⭐ This is useful when comparing the sizes of
+            positive and negative numbers.
+
+            For example, between <strong>-5</strong> and
+            <strong>+2</strong>, the number 5 is bigger in
+            size than 2.
+
+        </div>
+
+    </div>
+
+
+    <!-- ADDITION LESSON -->
+
+    <div class="card">
+
+        <h2>➕ Lesson 1: Adding Integers</h2>
+
+        <p class="intro">
+
+            When adding integers, first look at the signs.
+
+        </p>
+
+        <div class="rule">
+
+            <strong>RULE 1 — SAME SIGNS</strong>
+
+            <br><br>
+
+            If the signs are the same:
+
+            <br>
+
+            <strong>ADD the numbers and KEEP the sign.</strong>
+
+        </div>
+
+        <h3>Example 1: Positive + Positive</h3>
+
+        <div class="example">
+
+            <p class="math">(+3) + (+2)</p>
+
+            <p>Both signs are positive.</p>
+
+            <p>Add the numbers: 3 + 2 = 5</p>
+
+            <p>Keep the positive sign.</p>
+
+            <p class="math">Answer: +5</p>
+
+        </div>
+
+        <h3>Example 2: Negative + Negative</h3>
+
+        <div class="example">
+
+            <p class="math">(-3) + (-2)</p>
+
+            <p>Both signs are negative.</p>
+
+            <p>Add the numbers: 3 + 2 = 5</p>
+
+            <p>Keep the negative sign.</p>
+
+            <p class="math">Answer: -5</p>
+
+        </div>
+
+        <div class="rule">
+
+            <strong>RULE 2 — OPPOSITE SIGNS</strong>
+
+            <br><br>
+
+            When the signs are different:
+
+            <br><br>
+
+            <strong>BIG NUMBER − SMALL NUMBER</strong>
+
+            <br><br>
+
+            Then use the <strong>sign of the BIG number</strong>
+            as the sign of the answer.
+
+        </div>
+
+        <h3>Example 3: Positive + Negative</h3>
+
+        <div class="example">
+
+            <p class="math">(+5) + (-2)</p>
+
+            <p>The signs are opposite.</p>
+
+            <p>BIG − SMALL: 5 − 2 = 3</p>
+
+            <p>The BIG number is +5.</p>
+
+            <p class="math">Answer: +3</p>
+
+        </div>
+
+        <h3>Example 4: Negative + Positive</h3>
+
+        <div class="example">
+
+            <p class="math">(-5) + (+2)</p>
+
+            <p>The signs are opposite.</p>
+
+            <p>BIG − SMALL: 5 − 2 = 3</p>
+
+            <p>The BIG number is -5.</p>
+
+            <p class="math">Answer: -3</p>
+
+        </div>
+
+        <div class="tip">
+
+            🧠 <strong>Easy reminder:</strong>
+
+            <br><br>
+
+            Same signs → <strong>ADD</strong> and keep the sign.
+
+            <br>
+
+            Opposite signs → <strong>BIG − SMALL</strong>,
+            then use the sign of the BIG number.
+
+        </div>
+
+        <div class="button-area">
+
+            <button
+                class="primary-btn"
+                onclick="startQuiz('addition')">
+
+                📝 Take 25-Item Addition Quiz
+
+            </button>
+
+        </div>
+
+        <div class="bank-info">
+            Question bank: 100 addition problems • 25 randomly selected
+        </div>
+
+    </div>
+
+
+    <!-- SUBTRACTION LESSON -->
+
+    <div class="card">
+
+        <h2>➖ Lesson 2: Subtracting Integers</h2>
+
+        <p class="intro">
+
+            Subtraction becomes easier when we change it
+            into addition.
+
+        </p>
+
+        <div class="rule">
+
+            <strong>KEEP – CHANGE – CHANGE</strong>
+
+            <br><br>
+
+            1. <strong>KEEP</strong> the first number.
+
+            <br>
+
+            2. <strong>CHANGE</strong> subtraction (−)
+            into addition (+).
+
+            <br>
+
+            3. <strong>CHANGE</strong> the sign of the
+            second number.
+
+            <br><br>
+
+            Then solve using the addition rules.
+
+        </div>
+
+        <h3>Example 1</h3>
+
+        <div class="example">
+
+            <p class="math">5 − 2</p>
+
+            <p>Keep 5.</p>
+
+            <p>Change − to +.</p>
+
+            <p>Change +2 to -2.</p>
+
+            <p class="math">5 + (-2)</p>
+
+            <p>Opposite signs → BIG − SMALL.</p>
+
+            <p>5 − 2 = 3</p>
+
+            <p class="math">Answer: +3</p>
+
+        </div>
+
+        <h3>Example 2</h3>
+
+        <div class="example">
+
+            <p class="math">5 − (-2)</p>
+
+            <p>Keep 5.</p>
+
+            <p>Change − to +.</p>
+
+            <p>Change -2 to +2.</p>
+
+            <p class="math">5 + (+2)</p>
+
+            <p>Same signs → ADD.</p>
+
+            <p>5 + 2 = 7</p>
+
+            <p class="math">Answer: +7</p>
+
+        </div>
+
+        <h3>Example 3</h3>
+
+        <div class="example">
+
+            <p class="math">-5 − 2</p>
+
+            <p>Keep -5.</p>
+
+            <p>Change − to +.</p>
+
+            <p>Change +2 to -2.</p>
+
+            <p class="math">-5 + (-2)</p>
+
+            <p>Same signs → ADD.</p>
+
+            <p>5 + 2 = 7.</p>
+
+            <p class="math">Answer: -7</p>
+
+        </div>
+
+        <h3>Example 4</h3>
+
+        <div class="example">
+
+            <p class="math">-5 − (-2)</p>
+
+            <p>Keep -5.</p>
+
+            <p>Change − to +.</p>
+
+            <p>Change -2 to +2.</p>
+
+            <p class="math">-5 + (+2)</p>
+
+            <p>Opposite signs → BIG − SMALL.</p>
+
+            <p>5 − 2 = 3.</p>
+
+            <p class="math">Answer: -3</p>
+
+        </div>
+
+        <div class="tip">
+
+            🧠 <strong>Remember:</strong>
+
+            <br><br>
+
+            Subtraction:
+
+            <strong>KEEP – CHANGE – CHANGE</strong>
+
+            <br><br>
+
+            After that, use the addition rules.
+
+        </div>
+
+        <div class="button-area">
+
+            <button
+                class="primary-btn"
+                onclick="startQuiz('subtraction')">
+
+                📝 Take 25-Item Subtraction Quiz
+
+            </button>
+
+        </div>
+
+        <div class="bank-info">
+            Question bank: 100 subtraction problems • 25 randomly selected
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     QUIZ SCREEN
+====================================================== -->
+
+<section id="quizScreen" class="screen">
+
+    <div class="quiz-header">
+
+        <h2 id="quizTitle">
+            Integer Quiz
+        </h2>
+
+        <div class="progress-container">
+            <div id="progressBar"></div>
+        </div>
+
+    </div>
+
+    <div class="question-card">
+
+        <div id="questionNumber" class="question-number"></div>
+
+        <div id="questionText" class="question"></div>
+
+        <div id="choices" class="choices"></div>
+
+        <div id="explanation" class="explanation"></div>
+
+        <div class="next-area">
+
+            <button
+                id="nextButton"
+                class="primary-btn"
+                onclick="nextQuestion()"
+                disabled>
+
+                Next Question →
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     RESULT SCREEN
+====================================================== -->
+
+<section id="resultScreen" class="screen">
+
+    <div class="result-card">
+
+        <h2 id="resultTitle">
+            Quiz Complete!
+        </h2>
+
+        <div id="scoreNumber" class="score-number">
+            0/25
+        </div>
+
+        <p>Your Score</p>
+
+        <div class="result-stats">
+
+            <div class="stat">
+                <strong id="correctCount">0</strong>
+                <span>Correct</span>
+            </div>
+
+            <div class="stat">
+                <strong id="wrongCount">0</strong>
+                <span>Wrong</span>
+            </div>
+
+            <div class="stat">
+                <strong id="percentage">0%</strong>
+                <span>Percentage</span>
+            </div>
+
+        </div>
+
+        <h3 id="scoreMessage"></h3>
+
+        <div class="button-area">
+
+            <button
+                class="primary-btn"
+                onclick="restartQuiz()">
+
+                🔄 Try Again
+
+            </button>
+
+            <button
+                class="secondary-btn"
+                onclick="backToLessons()">
+
+                📘 Back to Lesson
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+</div>
+
+
+<footer>
+
+    Adding and Subtracting Integers Practice
+    <br>
+    Learn • Practice • Master
+
+</footer>
+
+
+<!-- =====================================================
+     FEEDBACK MODAL
+====================================================== -->
+
+<div id="feedbackModal" class="modal">
+
+    <div class="modal-box">
+
+        <div id="modalIcon" class="modal-icon"></div>
+
+        <h2 id="modalTitle"></h2>
+
+        <p id="modalMessage"></p>
+
+        <button
+            class="primary-btn"
+            onclick="closeFeedback()">
+
+            Continue →
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   QUIZ SETTINGS
+===================================================== */
+
+const QUESTIONS_PER_QUIZ = 25;
+
+
+/* =====================================================
+   CREATE 100 ADDITION QUESTIONS
+=====================================================
+
+   These generate exactly 100 different problems.
+
+   The values range from -10 to +10.
+
+   We deliberately exclude 0 from the operands so
+   the practice focuses on signed numbers.
+
+====================================================== */
+
+function createAdditionBank() {
+
+    const bank = [];
+
+    for (let a = -10; a <= 10; a++) {
+
+        for (let b = -10; b <= 10; b++) {
+
+            if (a === 0 || b === 0) continue;
+
+            if (bank.length >= 100) break;
+
+            bank.push(
+                createQuestion(a, "+", b)
+            );
+        }
+
+        if (bank.length >= 100) break;
+    }
+
+    return bank;
+}
+
+
+/* =====================================================
+   CREATE 100 SUBTRACTION QUESTIONS
+====================================================== */
+
+function createSubtractionBank() {
+
+    const bank = [];
+
+    for (let a = -10; a <= 10; a++) {
+
+        for (let b = -10; b <= 10; b++) {
+
+            if (a === 0 || b === 0) continue;
+
+            if (bank.length >= 100) break;
+
+            bank.push(
+                createQuestion(a, "-", b)
+            );
+        }
+
+        if (bank.length >= 100) break;
+    }
+
+    return bank;
+}
+
+
+/* =====================================================
+   FORMAT INTEGER
+====================================================== */
+
+function formatInteger(number) {
+
+    if (number > 0) {
+        return "+" + number;
+    }
+
+    return String(number);
+}
+
+
+/* =====================================================
+   CREATE QUESTION
+====================================================== */
+
+function createQuestion(a, operator, b) {
+
+    let answer;
+
+    if (operator === "+") {
+        answer = a + b;
+    } else {
+        answer = a - b;
+    }
+
+    const q =
+        "(" +
+        formatInteger(a) +
+        ") " +
+        operator +
+        " (" +
+        formatInteger(b) +
+        ") = ?";
+
+
+    const choices =
+        createChoices(answer);
+
+
+    const explanation =
+        createExplanation(
+            a,
+            operator,
+            b,
+            answer
+        );
+
+
+    return {
+        q: q,
+        choices: choices,
+        answer: String(answer),
+        explanation: explanation
+    };
+}
+
+
+/* =====================================================
+   CREATE WRONG ANSWERS
+====================================================== */
+
+function createChoices(answer) {
+
+    const choices = new Set();
+
+    choices.add(String(answer));
+
+
+    /*
+       Generate plausible distractors.
+    */
+
+    const possibleWrongAnswers = [
+
+        answer + 1,
+        answer - 1,
+        -answer,
+        answer + 2,
+        answer - 2,
+        answer + 3,
+        answer - 3,
+        answer + 5,
+        answer - 5
+
+    ];
+
+
+    possibleWrongAnswers.forEach(value => {
+
+        if (
+            choices.size < 4 &&
+            String(value) !== String(answer)
+        ) {
+
+            choices.add(String(value));
+
+        }
+
+    });
+
+
+    /*
+       Make sure there are always 4 choices.
+    */
+
+    let offset = 1;
+
+    while (choices.size < 4) {
+
+        choices.add(
+            String(answer + offset)
+        );
+
+        offset++;
+
+    }
+
+
+    return Array.from(choices);
+
+}
+
+
+/* =====================================================
+   CREATE EXPLANATION
+====================================================== */
+
+function createExplanation(
+    a,
+    operator,
+    b,
+    answer
+) {
+
+    if (operator === "+") {
+
+        const sameSigns =
+            (a > 0 && b > 0) ||
+            (a < 0 && b < 0);
+
+
+        if (sameSigns) {
+
+            const absoluteA = Math.abs(a);
+            const absoluteB = Math.abs(b);
+
+            const sign =
+                answer >= 0
+                    ? "positive"
+                    : "negative";
+
+
+            return `
+                Both numbers have the same sign.
+                <br><br>
+
+                Same signs → <strong>ADD</strong> the
+                absolute values and keep the sign.
+                <br><br>
+
+                ${absoluteA} + ${absoluteB}
+                = ${Math.abs(answer)}
+                <br><br>
+
+                The answer is ${sign}.
+                <br><br>
+
+                <strong>Answer: ${formatInteger(answer)}</strong>
+            `;
+
+        } else {
+
+            const big =
+                Math.max(
+                    Math.abs(a),
+                    Math.abs(b)
+                );
+
+            const small =
+                Math.min(
+                    Math.abs(a),
+                    Math.abs(b)
+                );
+
+
+            return `
+                The signs are opposite.
+                <br><br>
+
+                Opposite signs →
+                <strong>BIG − SMALL</strong>.
+                <br><br>
+
+                ${big} − ${small}
+                = ${Math.abs(answer)}
+                <br><br>
+
+                Use the sign of the number with
+                the greater absolute value.
+                <br><br>
+
+                <strong>Answer: ${formatInteger(answer)}</strong>
+            `;
+        }
+
+    }
+
+
+    /*
+       SUBTRACTION
+    */
+
+    const changedB = -b;
+
+
+    let additionExplanation = "";
+
+
+    const sameSigns =
+        (a > 0 && changedB > 0) ||
+        (a < 0 && changedB < 0);
+
+
+    if (sameSigns) {
+
+        additionExplanation = `
+            The signs are the same after
+            KEEP–CHANGE–CHANGE.
+            <br><br>
+
+            ADD the absolute values and keep
+            the sign.
+            <br><br>
+
+            ${Math.abs(a)} + ${Math.abs(changedB)}
+            = ${Math.abs(answer)}
+        `;
+
+    } else {
+
+        const big =
+            Math.max(
+                Math.abs(a),
+                Math.abs(changedB)
+            );
+
+        const small =
+            Math.min(
+                Math.abs(a),
+                Math.abs(changedB)
+            );
+
+
+        additionExplanation = `
+            The signs are opposite after
+            KEEP–CHANGE–CHANGE.
+            <br><br>
+
+            BIG − SMALL:
+            ${big} − ${small}
+            = ${Math.abs(answer)}
+            <br><br>
+
+            Use the sign of the number with
+            the greater absolute value.
+        `;
+
+    }
+
+
+    return `
+        <strong>KEEP – CHANGE – CHANGE</strong>
+        <br><br>
+
+        KEEP:
+        ${formatInteger(a)}
+        <br>
+
+        CHANGE subtraction to addition:
+        ${formatInteger(a)} + (${formatInteger(changedB)})
+        <br>
+
+        CHANGE the sign of the second number:
+        ${formatInteger(b)} becomes
+        ${formatInteger(changedB)}
+        <br><br>
+
+        ${additionExplanation}
+
+        <br><br>
+
+        <strong>Answer: ${formatInteger(answer)}</strong>
+    `;
+}
+
+
+/* =====================================================
+   QUESTION BANKS
+====================================================== */
+
+const additionQuestions =
+    createAdditionBank();
+
+
+const subtractionQuestions =
+    createSubtractionBank();
+
+
+/* =====================================================
+   QUIZ VARIABLES
+====================================================== */
+
+let currentQuiz = [];
+
+let quizType = "";
+
+let currentQuestion = 0;
+
+let correctAnswers = 0;
+
+let wrongAnswers = 0;
+
+let answered = false;
+
+
+/* =====================================================
+   SHUFFLE ARRAY
+====================================================== */
+
+function shuffleArray(array) {
+
+    const shuffled = [...array];
+
+
+    for (
+        let i = shuffled.length - 1;
+        i > 0;
+        i--
+    ) {
+
+        const randomIndex =
+            Math.floor(
+                Math.random() * (i + 1)
+            );
+
+
+        [
+            shuffled[i],
+            shuffled[randomIndex]
+        ] =
+        [
+            shuffled[randomIndex],
+            shuffled[i]
+        ];
+
+    }
+
+
+    return shuffled;
+}
+
+
+/* =====================================================
+   SELECT RANDOM QUESTIONS
+====================================================== */
+
+function getRandomQuestions(
+    questionBank,
+    numberOfQuestions
+) {
+
+    /*
+       Shuffle the entire 100-question bank,
+       then take only the first 25.
+    */
+
+    return shuffleArray(questionBank)
+        .slice(0, numberOfQuestions);
+}
+
+
+/* =====================================================
+   START QUIZ
+====================================================== */
+
+function startQuiz(type) {
+
+    quizType = type;
+
+
+    if (type === "addition") {
+
+        /*
+           RANDOM 25 FROM 100
+        */
+
+        currentQuiz =
+            getRandomQuestions(
+                additionQuestions,
+                QUESTIONS_PER_QUIZ
+            );
+
+
+        document.getElementById(
+            "quizTitle"
+        ).textContent =
+            "➕ Addition of Integers Quiz";
+
+    } else {
+
+        /*
+           RANDOM 25 FROM 100
+        */
+
+        currentQuiz =
+            getRandomQuestions(
+                subtractionQuestions,
+                QUESTIONS_PER_QUIZ
+            );
+
+
+        document.getElementById(
+            "quizTitle"
+        ).textContent =
+            "➖ Subtraction of Integers Quiz";
+    }
+
+
+    currentQuestion = 0;
+
+    correctAnswers = 0;
+
+    wrongAnswers = 0;
+
+    answered = false;
+
+
+    showScreen("quizScreen");
+
+    loadQuestion();
+}
+
+
+/* =====================================================
+   LOAD QUESTION
+====================================================== */
+
+function loadQuestion() {
+
+    answered = false;
+
+
+    const question =
+        currentQuiz[currentQuestion];
+
+
+    document.getElementById(
+        "questionNumber"
+    ).textContent =
+        "Question " +
+        (currentQuestion + 1) +
+        " of " +
+        currentQuiz.length;
+
+
+    document.getElementById(
+        "questionText"
+    ).textContent =
+        question.q;
+
+
+    const progress =
+        ((currentQuestion + 1) /
+        currentQuiz.length) * 100;
+
+
+    document.getElementById(
+        "progressBar"
+    ).style.width =
+        progress + "%";
+
+
+    /*
+       RANDOMIZE CHOICES
+    */
+
+    const randomizedChoices =
+        shuffleArray(question.choices);
+
+
+    const choicesContainer =
+        document.getElementById(
+            "choices"
+        );
+
+
+    choicesContainer.innerHTML = "";
+
+
+    randomizedChoices.forEach(
+        choice => {
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.className =
+                "choice";
+
+
+            button.textContent =
+                formatChoice(choice);
+
+
+            button.onclick =
+                function() {
+
+                    selectAnswer(
+                        choice,
+                        button
+                    );
+
+                };
+
+
+            choicesContainer.appendChild(
+                button
+            );
+
+        }
+    );
+
+
+    document.getElementById(
+        "explanation"
+    )
+    .classList
+    .remove("show");
+
+
+    document.getElementById(
+        "explanation"
+    ).innerHTML = "";
+
+
+    document.getElementById(
+        "nextButton"
+    ).disabled = true;
+
+
+    if (
+        currentQuestion ===
+        currentQuiz.length - 1
+    ) {
+
+        document.getElementById(
+            "nextButton"
+        ).textContent =
+            "Finish Quiz ✓";
+
+    } else {
+
+        document.getElementById(
+            "nextButton"
+        ).textContent =
+            "Next Question →";
+
+    }
+
+}
+
+
+/* =====================================================
+   FORMAT ANSWER CHOICE
+====================================================== */
+
+function formatChoice(value) {
+
+    const number =
+        Number(value);
+
+
+    if (number > 0) {
+
+        return "+" + number;
+
+    }
+
+
+    return String(number);
+}
+
+
+/* =====================================================
+   SELECT ANSWER
+====================================================== */
+
+function selectAnswer(
+    choice,
+    selectedButton
+) {
+
+    if (answered) return;
+
+
+    answered = true;
+
+
+    const question =
+        currentQuiz[currentQuestion];
+
+
+    const allChoices =
+        document.querySelectorAll(
+            ".choice"
+        );
+
+
+    allChoices.forEach(
+        button => {
+
+            button.disabled = true;
+
+        }
+    );
+
+
+    if (
+        String(choice) ===
+        String(question.answer)
+    ) {
+
+        correctAnswers++;
+
+
+        selectedButton
+            .classList
+            .add("correct");
+
+
+        showFeedback(true);
+
+    } else {
+
+        wrongAnswers++;
+
+
+        selectedButton
+            .classList
+            .add("wrong");
+
+
+        allChoices.forEach(
+            button => {
+
+                const buttonValue =
+                    button.textContent
+                    .replace("+", "")
+                    .trim();
+
+
+                if (
+                    buttonValue ===
+                    String(question.answer)
+                ) {
+
+                    button.classList
+                        .add("correct");
+
+                }
+
+            }
+        );
+
+
+        showFeedback(false);
+
+    }
+
+}
+
+
+/* =====================================================
+   FEEDBACK MODAL
+====================================================== */
+
+function showFeedback(isCorrect) {
+
+    const modal =
+        document.getElementById(
+            "feedbackModal"
+        );
+
+
+    const icon =
+        document.getElementById(
+            "modalIcon"
+        );
+
+
+    const title =
+        document.getElementById(
+            "modalTitle"
+        );
+
+
+    const message =
+        document.getElementById(
+            "modalMessage"
+        );
+
+
+    if (isCorrect) {
+
+        icon.textContent = "🎉";
+
+        title.textContent =
+            "Good Job!";
+
+        message.textContent =
+            "That's correct! You understood the process. Keep going!";
+
+    } else {
+
+        icon.textContent = "💪";
+
+        title.textContent =
+            "Keep Practicing!";
+
+        message.textContent =
+            "That's okay! Review the steps carefully and keep practicing.";
+
+    }
+
+
+    modal.classList.add("show");
+}
+
+
+/* =====================================================
+   CLOSE FEEDBACK
+====================================================== */
+
+function closeFeedback() {
+
+    document.getElementById(
+        "feedbackModal"
+    )
+    .classList
+    .remove("show");
+
+
+    const question =
+        currentQuiz[currentQuestion];
+
+
+    const explanation =
+        document.getElementById(
+            "explanation"
+        );
+
+
+    explanation.innerHTML =
+        "<strong>💡 Explanation:</strong><br><br>" +
+        question.explanation;
+
+
+    explanation.classList.add("show");
+
+
+    document.getElementById(
+        "nextButton"
+    ).disabled = false;
+}
+
+
+/* =====================================================
+   NEXT QUESTION
+====================================================== */
+
+function nextQuestion() {
+
+    if (!answered) return;
+
+
+    if (
+        currentQuestion <
+        currentQuiz.length - 1
+    ) {
+
+        currentQuestion++;
+
+        loadQuestion();
+
+    } else {
+
+        showResults();
+
+    }
+
+}
+
+
+/* =====================================================
+   SHOW RESULTS
+====================================================== */
+
+function showResults() {
+
+    const percentage =
+        Math.round(
+            (correctAnswers /
+            currentQuiz.length) * 100
+        );
+
+
+    document.getElementById(
+        "scoreNumber"
+    ).textContent =
+        correctAnswers +
+        "/" +
+        currentQuiz.length;
+
+
+    document.getElementById(
+        "correctCount"
+    ).textContent =
+        correctAnswers;
+
+
+    document.getElementById(
+        "wrongCount"
+    ).textContent =
+        wrongAnswers;
+
+
+    document.getElementById(
+        "percentage"
+    ).textContent =
+        percentage + "%";
+
+
+    let message;
+
+
+    if (percentage === 100) {
+
+        message =
+            "🌟 Excellent! You mastered the process!";
+
+    }
+
+    else if (percentage >= 80) {
+
+        message =
+            "👏 Great job! You have a strong understanding of the process.";
+
+    }
+
+    else if (percentage >= 60) {
+
+        message =
+            "👍 Good effort! Review the rules and practice some more.";
+
+    }
+
+    else {
+
+        message =
+            "💪 Keep practicing! Go back to the lesson and review the steps.";
+
+    }
+
+
+    document.getElementById(
+        "scoreMessage"
+    ).textContent =
+        message;
+
+
+    if (quizType === "addition") {
+
+        document.getElementById(
+            "resultTitle"
+        ).textContent =
+            "➕ Addition Quiz Complete!";
+
+    } else {
+
+        document.getElementById(
+            "resultTitle"
+        ).textContent =
+            "➖ Subtraction Quiz Complete!";
+
+    }
+
+
+    showScreen("resultScreen");
+}
+
+
+/* =====================================================
+   TRY AGAIN
+====================================================== */
+
+function restartQuiz() {
+
+    /*
+       This generates a completely new random
+       set of 25 questions from the 100-item bank.
+    */
+
+    startQuiz(quizType);
+}
+
+
+/* =====================================================
+   BACK TO LESSON
+====================================================== */
+
+function backToLessons() {
+
+    document.getElementById(
+        "feedbackModal"
+    )
+    .classList
+    .remove("show");
+
+
+    showScreen("homeScreen");
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+
+/* =====================================================
+   SCREEN CONTROL
+====================================================== */
+
+function showScreen(screenId) {
+
+    document
+        .querySelectorAll(".screen")
+        .forEach(
+            screen => {
+
+                screen.classList
+                    .remove("active");
+
+            }
+        );
+
+
+    document.getElementById(
+        screenId
+    )
+    .classList
+    .add("active");
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+</script>
+
+</body>
+</html>
+```
